@@ -46,11 +46,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
 export default function App() {
     const [ready, setReady] = useState(false);
 
-    const NaviUse = () => {
-        const navigation = useNavigation()
-        navigator().setNavigation(navigation)
-        return null;
-    }
+    // const NaviUse = () => {
+    //     const navigation = useNavigation()
+    //     navigator().setNavigation(navigation)
+    //     return null;
+    // }
 
     const navigate = useNavigate();
     useEffect(() => {
