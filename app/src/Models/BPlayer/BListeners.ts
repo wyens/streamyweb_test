@@ -1,4 +1,3 @@
-import { Platform } from 'react-native';
 import { BPlayer } from './BPlayer';
 
 class BListeners {
@@ -36,7 +35,8 @@ class BListeners {
   onTimeUpdated = (e: any) => {
     this.bPlayer.debug.setItem("PROGRESS", e)
     if (!this.bPlayer.isLive) {
-      this.bPlayer.timeline.setTime(Platform.OS === 'android' ? Math.floor(e.currentTime) : Math.floor(e.currentTime / 1000));
+      //this.bPlayer.timeline.setTime(Platform.OS === 'android' ? Math.floor(e.currentTime) : Math.floor(e.currentTime / 1000));
+      this.bPlayer.timeline.setTime(Math.floor(e.currentTime / 1000));
     }
   };
   onLiveTimeUpdated = () => {};

@@ -1,4 +1,3 @@
-import { ImageSourcePropType } from 'react-native';
 import { Model } from '../../Base/Model';
 
 type TVInfoInit = {
@@ -6,7 +5,7 @@ type TVInfoInit = {
   title?: string;
   timeText?: string;
   metaText?: string;
-  logoSource?: ImageSourcePropType;
+  logoSource?: any;
   live?: boolean;
 };
 

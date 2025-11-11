@@ -1,10 +1,8 @@
-import { BackHandler, StyleSheet, View } from 'react-native';
 import React from 'react';
 
 import { ViewItem } from '../../Base/ViewItem';
 import { VideoPlayerPageModel } from '../../Controllers/Pages/NewScreens/VideoPlayerPageModel';
-import { BPlayerView } from '../../Views/BPlayerView/BPlayerView.tsx';
-import { controllers } from '../../Controllers/Controllers.ts';
+
 
 class VideoPlayerPage extends ViewItem {
   private focusUnsub: any;
@@ -13,9 +11,6 @@ class VideoPlayerPage extends ViewItem {
   }
   componentDidMount(): void {
     this.controller.init();
-    this.focusUnsub = this.props.navigation.addListener('focus', () => {
-      controllers().remoteControls.setOnRemoteEvent(this.controller.RemoteEvent);
-    });
   }
   componentWillUnmount(): void {
     this.controller.blur();
@@ -23,17 +18,13 @@ class VideoPlayerPage extends ViewItem {
   }
   render() {
     return (
-      <View style={[styles.container]}>
-        <BPlayerView ref={this.controller.bPlayer.set} controller={this.controller.bPlayer} />
-      </View>
+        <div className={'screen_container'}>
+            VIDEO SCREEN
+        {/*<BPlayerView ref={this.controller.bPlayer.set} controller={this.controller.bPlayer} />*/}
+      </div>
     );
   }
 }
 
 export { VideoPlayerPage };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});

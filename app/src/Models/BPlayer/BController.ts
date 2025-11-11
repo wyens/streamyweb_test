@@ -1,5 +1,4 @@
 import { Model } from '../../Base/Model';
-import { controllers } from '../../Controllers/Controllers';
 import { BPlayer } from './BPlayer';
 
 class BController extends Model {
@@ -60,7 +59,7 @@ class BController extends Model {
   };
   hideMe = () => {
     this.setVisible(false);
-    controllers().statusBar.setInFullScreen(this._isFullScreen);
+    // controllers().statusBar.setInFullScreen(this._isFullScreen);
   };
 
   toggleFullscreen = () => {
@@ -73,7 +72,7 @@ class BController extends Model {
       this.bPlayer.model.onFullScreen();
     }
     // controllers().main.oneFilm.pageHeader.setHidden(this._isFullScreen);
-    controllers().statusBar.setInFullScreen(this._isFullScreen);
+    // controllers().statusBar.setInFullScreen(this._isFullScreen);
     this.updateMe();
   };
 }

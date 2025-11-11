@@ -53,7 +53,7 @@ export default function App() {
             try {
                 console.log('APP RENDER')
                 await AppStateController.restoreData();
-                if (!controllers().auth.isLogin) {
+                if (controllers().auth.isLogin) {
                     navigate("/home", { replace: true });
                 } else {
                     navigate("/", { replace: true });

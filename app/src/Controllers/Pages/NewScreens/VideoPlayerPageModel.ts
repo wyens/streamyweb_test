@@ -1,9 +1,7 @@
-import { Model } from '../../../Base/Model';
-import { BPlayer } from '../../../Models/BPlayer/BPlayer.ts';
-import { controllers } from '../../Controllers.ts';
-import { RemoteEventType } from '../../../Base/RemoteControls.ts';
-import { IptvChannel } from '../HomeStack/IptvPage/IptvChannel.ts';
-import { navigator } from '../../Navigation.ts';
+import { Model } from '~/src/Base/Model';
+import { BPlayer } from '~/src/Models/BPlayer/BPlayer';
+import type {IptvChannel} from "~/src/Controllers/Pages/HomeStack/IptvPage/IptvChannel";
+import {appNavigator} from "~/src/Controllers/Navigation";
 
 class VideoPlayerPageModel extends Model {
   private _initialChannel: IptvChannel | null;
@@ -15,7 +13,7 @@ class VideoPlayerPageModel extends Model {
   }
   public init = () => {
     if (this._initialChannel === null) {
-      navigator().goBack();
+      // appNavigator().goBack();
       return;
     }
 
@@ -41,59 +39,59 @@ class VideoPlayerPageModel extends Model {
     return this._bPlayer;
   }
 
-  public RemoteEvent = (type: RemoteEventType) => {
-    console.log('RemoteEvent VideoPlayerPage', type);
-    if (type === RemoteEventType.Back) {
-      // EPG
-      if (this._bPlayer.videoControls.controllerEPG.isVisible) {
-        this._bPlayer.videoControls.controllerEPG.hide(this._bPlayer.videoControls.updateMe);
-        this._bPlayer.videoControls.timer.start();
-        // this._bPlayer.videoControls.controllerPlayPauseButton.setFocused(true);
-        return;
-      }
-      // channel
-      if (this._bPlayer.videoControls.controllerChannelList.isVisible) {
-        // console.error("BACK PRESSED ON CONTROLS CHANNEL IS VISILBE")
-        this._bPlayer.videoControls.controllerChannelList.hide(this._bPlayer.videoControls.updateMe);
-        this._bPlayer.videoControls.timer.start();
-        // this._bPlayer.videoControls.controllerPlayPauseButton.setFocused(true);
-        return;
-      }
-      if (this._bPlayer.videoControls.isVisible) {
-        this._bPlayer.videoControls.hideControllers();
-        this._bPlayer.videoControls.timer.stop();
-        return;
-      }
-      navigator().goBack();
-      return;
-    }
-
-    if (this._bPlayer.videoControls.controllerChannelList.isVisible && (type === RemoteEventType.Left || type === RemoteEventType.Right)) {
-      if (this._bPlayer.videoControls.controllerChannelList.categoryFocusRef?.setFocused) {
-        this._bPlayer.videoControls.controllerChannelList.categoryFocusRef.setFocused(true);
-      }
-    }
-    // if (this._bPlayer.videoControls.isVisible) {
-    //   this._bPlayer.videoControls.timer.start();
-    //   return;
-    // }
-    // if (type === RemoteEventType.Select) {
-    //   if (!this._bPlayer.videoControls.controllerPlayPauseButton.focused) {
-    //     this._bPlayer.videoControls.controllerPlayPauseButton.onPress();
-    //   }
-    //   this._bPlayer.videoControls.controllerPlayPauseButton.setFocused(true);
-    // }
-    // if (type === RemoteEventType.Up || type === RemoteEventType.Left) {
-    //   this._bPlayer.videoControls.TVHeaderModel.setFocused(true);
-    // }
-    // if (type === RemoteEventType.Right) {
-    //   this._bPlayer.videoControls.TVFavoriteModel.setFocused(true);
-    // }
-    // if (type === RemoteEventType.Down) {
-    //   this._bPlayer.videoControls.TVUpNextModel.setFocused(true);
-    // }
-    this._bPlayer.videoControls.showControllers();
-  };
+  // public RemoteEvent = (type: RemoteEventType) => {
+  //   console.log('RemoteEvent VideoPlayerPage', type);
+  //   if (type === RemoteEventType.Back) {
+  //     // EPG
+  //     if (this._bPlayer.videoControls.controllerEPG.isVisible) {
+  //       this._bPlayer.videoControls.controllerEPG.hide(this._bPlayer.videoControls.updateMe);
+  //       this._bPlayer.videoControls.timer.start();
+  //       // this._bPlayer.videoControls.controllerPlayPauseButton.setFocused(true);
+  //       return;
+  //     }
+  //     // channel
+  //     if (this._bPlayer.videoControls.controllerChannelList.isVisible) {
+  //       // console.error("BACK PRESSED ON CONTROLS CHANNEL IS VISILBE")
+  //       this._bPlayer.videoControls.controllerChannelList.hide(this._bPlayer.videoControls.updateMe);
+  //       this._bPlayer.videoControls.timer.start();
+  //       // this._bPlayer.videoControls.controllerPlayPauseButton.setFocused(true);
+  //       return;
+  //     }
+  //     if (this._bPlayer.videoControls.isVisible) {
+  //       this._bPlayer.videoControls.hideControllers();
+  //       this._bPlayer.videoControls.timer.stop();
+  //       return;
+  //     }
+  //     navigator().goBack();
+  //     return;
+  //   }
+  //
+  //   if (this._bPlayer.videoControls.controllerChannelList.isVisible && (type === RemoteEventType.Left || type === RemoteEventType.Right)) {
+  //     if (this._bPlayer.videoControls.controllerChannelList.categoryFocusRef?.setFocused) {
+  //       this._bPlayer.videoControls.controllerChannelList.categoryFocusRef.setFocused(true);
+  //     }
+  //   }
+  //   // if (this._bPlayer.videoControls.isVisible) {
+  //   //   this._bPlayer.videoControls.timer.start();
+  //   //   return;
+  //   // }
+  //   // if (type === RemoteEventType.Select) {
+  //   //   if (!this._bPlayer.videoControls.controllerPlayPauseButton.focused) {
+  //   //     this._bPlayer.videoControls.controllerPlayPauseButton.onPress();
+  //   //   }
+  //   //   this._bPlayer.videoControls.controllerPlayPauseButton.setFocused(true);
+  //   // }
+  //   // if (type === RemoteEventType.Up || type === RemoteEventType.Left) {
+  //   //   this._bPlayer.videoControls.TVHeaderModel.setFocused(true);
+  //   // }
+  //   // if (type === RemoteEventType.Right) {
+  //   //   this._bPlayer.videoControls.TVFavoriteModel.setFocused(true);
+  //   // }
+  //   // if (type === RemoteEventType.Down) {
+  //   //   this._bPlayer.videoControls.TVUpNextModel.setFocused(true);
+  //   // }
+  //   this._bPlayer.videoControls.showControllers();
+  // };
 }
 
 export { VideoPlayerPageModel };

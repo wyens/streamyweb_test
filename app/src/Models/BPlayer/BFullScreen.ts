@@ -1,5 +1,4 @@
 import { Model } from "../../Base/Model";
-import { controllers } from "../../Controllers/Controllers";
 import { BPlayer } from "./BPlayer";
 
 class BFullScreen extends Model {
@@ -25,8 +24,8 @@ class BFullScreen extends Model {
             return
         }
         this._enabled = bool
-        controllers().main.menu.setVisible(!this._enabled)
-        controllers().statusBar.setVisible(!this._enabled)
+        // controllers().main.menu.setVisible(!this._enabled)
+        // controllers().statusBar.setVisible(!this._enabled)
         this.bPlayer.video.updateMe()
         this.updateMe()
     }

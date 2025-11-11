@@ -1,6 +1,4 @@
 import { Model } from '../../Base/Model';
-import { UserDataProvider } from '../../Base/UserDataProvider';
-import { controllers } from '../../Controllers/Controllers';
 import { BControl } from './BControl';
 import { BController } from './BController';
 import { BFullScreen } from './BFullScreen';
@@ -8,8 +6,8 @@ import { BListeners } from './BListeners';
 import { BState } from './BPlayerState';
 import { BTimeLine } from './BTimeLine';
 import { BVideo } from './BVideo';
-import { ControllerControlsVideo } from '../ControllerControlsVideo/ControllerControlsVideo.ts';
-import { BVidDebug } from './BVidDebug.ts';
+import  {ControllerControlsVideo} from "~/src/Models/ControllerControlsVideo/ControllerControlsVideo";
+import  {BVidDebug} from "~/src/Models/BPlayer/BVidDebug";
 
 type playerModel = {
   onFullScreen?: () => void;

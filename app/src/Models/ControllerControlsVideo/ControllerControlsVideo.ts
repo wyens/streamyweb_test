@@ -1,16 +1,15 @@
 import { Model } from '../../Base/Model';
-import { BPlayer } from '../BPlayer/BPlayer.ts';
-import { Animated, Easing } from 'react-native';
-import { ControllerPlayPauseButton } from './ControllerPlayPauseButton.ts';
-import { TVInfoModel } from './TVInfoModel.ts';
-import { TVUpNextModel } from './TVUpNextModel.ts';
-import { TVHeaderModel } from './TVHeaderModel.ts';
-import { Timer } from './Timer.ts';
-import { ControllerEPG } from './EPGList/ControllerEPG.ts';
-import { navigator } from '../../Controllers/Navigation.ts';
-import { IptvChannel } from '../../Controllers/Pages/HomeStack/IptvPage/IptvChannel.ts';
-import { ControllerChannelList } from './ChannelList/ControllerChannelList.ts';
-import { TVFavoriteModel } from './TVFavoriteModel.ts';
+import  {BPlayer} from "~/src/Models/BPlayer/BPlayer";
+import  {Timer} from "~/src/Models/ControllerControlsVideo/Timer";
+import  {ControllerPlayPauseButton} from "~/src/Models/ControllerControlsVideo/ControllerPlayPauseButton";
+import  { TVFavoriteModel } from "./TVFavoriteModel";
+import  { TVHeaderModel } from "./TVHeaderModel";
+import  { TVInfoModel } from "./TVInfoModel";
+import  { TVUpNextModel } from "./TVUpNextModel";
+import  { ControllerEPG } from "./EPGList/ControllerEPG";
+import  {ControllerChannelList} from "~/src/Models/ControllerControlsVideo/ChannelList/ControllerChannelList";
+import type {IptvChannel} from "~/src/Controllers/Pages/HomeStack/IptvPage/IptvChannel";
+import {appNavigator} from "~/src/Controllers/Navigation";
 
 class ControllerControlsVideo extends Model {
   private readonly _player: BPlayer;
@@ -25,7 +24,7 @@ class ControllerControlsVideo extends Model {
 
   private _isVisible = false;
 
-  private _opacity = new Animated.Value(0);
+  // private _opacity = new Animated.Value(0);
 
   private _duration = 520;
 
@@ -111,9 +110,9 @@ class ControllerControlsVideo extends Model {
   get isVisible() {
     return this._isVisible;
   }
-  get opacity() {
-    return this._opacity;
-  }
+  // get opacity() {
+  //   return this._opacity;
+  // }
 
   public showControllers = () => {
     if (this._isVisible) {
@@ -122,12 +121,12 @@ class ControllerControlsVideo extends Model {
     this._timer.start();
     this._isVisible = true;
     this.updateMe();
-    Animated.timing(this._opacity, {
-      toValue: 1,
-      duration: this._duration,
-      easing: Easing.out(Easing.cubic),
-      useNativeDriver: true,
-    }).start();
+    // Animated.timing(this._opacity, {
+    //   toValue: 1,
+    //   duration: this._duration,
+    //   easing: Easing.out(Easing.cubic),
+    //   useNativeDriver: true,
+    // }).start();
   };
 
   public hideControllers = (immediate: boolean = false): Promise<void> => {
@@ -136,24 +135,27 @@ class ControllerControlsVideo extends Model {
     }
     this.removeAllFocus();
     if (immediate) {
-      this._opacity.stopAnimation();
-      this._opacity.setValue(0);
+      // this._opacity.stopAnimation();
+      // this._opacity.setValue(0);
       this._isVisible = false;
       this.updateMe();
       return Promise.resolve();
     }
 
     return new Promise<void>((resolve) => {
-      Animated.timing(this._opacity, {
-        toValue: 0,
-        duration: this._duration,
-        easing: Easing.in(Easing.cubic),
-        useNativeDriver: true,
-      }).start(() => {
         this._isVisible = false;
         this.updateMe();
         resolve();
-      });
+      // Animated.timing(this._opacity, {
+      //   toValue: 0,
+      //   duration: this._duration,
+      //   easing: Easing.in(Easing.cubic),
+      //   useNativeDriver: true,
+      // }).start(() => {
+      //   this._isVisible = false;
+      //   this.updateMe();
+      //   resolve();
+      // });
     });
   };
 
@@ -178,7 +180,7 @@ class ControllerControlsVideo extends Model {
   };
 
   public goBack = () => {
-    navigator().goBack();
+    appNavigator().goBack();
   };
   public hideControllersTimer = () => {
     if (!this._isPlaying || this._controllerEPG.isVisible || this._controllerChannelList.isVisible) {

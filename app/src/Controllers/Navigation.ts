@@ -121,14 +121,11 @@ class NavigatorImpl {
 
     afterNavigation = () => {};
 
-    public goToMainListPage = (_data?: any) => {
-        this.navigate("MainListPage");
-    };
     public goToHomePage = (_data?: any) => {
         this.navigate("/home", {id: '1'});
     };
     public goToVideoPlayerPage = (_channel: any) => {
-        this.navigate("VideoPlayerPage");
+        this.navigate("/video", _channel);
     };
 }
 

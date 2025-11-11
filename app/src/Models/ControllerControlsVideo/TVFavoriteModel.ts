@@ -1,8 +1,8 @@
 import { Model } from '../../Base/Model';
-import { loadData, UserDataProvider } from '../../Base/UserDataProvider.ts';
-import { controllers } from '../../Controllers/Controllers.ts';
-import { favoriteBody } from '../../DataTypes/BaseResponse.ts';
-import { IptvChannel } from '../../Controllers/Pages/HomeStack/IptvPage/IptvChannel.ts';
+import type {favoriteBody} from '../../DataTypes/BaseResponse.ts';
+import type {IptvChannel} from "~/src/Controllers/Pages/HomeStack/IptvPage/IptvChannel";
+import {controllers} from "~/src/Controllers/Controllers";
+import {loadData, UserDataProvider} from "~/src/Base/UserDataProvider";
 
 type TVFavoriteInit = {
   isFavorite?: boolean;
@@ -10,7 +10,7 @@ type TVFavoriteInit = {
   channel?: IptvChannel;
 };
 
-class TVFavoriteModel extends Model {
+export class TVFavoriteModel extends Model {
   private _focused = false;
   private _isFavorite = false;
   private _channel_id: string = "";
@@ -122,4 +122,3 @@ class TVFavoriteModel extends Model {
   };
 }
 
-export { TVFavoriteModel, type TVFavoriteInit };

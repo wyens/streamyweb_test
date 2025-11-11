@@ -1,10 +1,9 @@
-import { Animated } from 'react-native';
-import { Model } from '../../../Base/Model.ts';
-import { EpgModel } from '../../../Controllers/Pages/HomeStack/IptvPage/EpgModel.ts';
+import {Model} from "~/src/Base/Model";
+import {EpgModel} from "~/src/Controllers/Pages/HomeStack/IptvPage/EpgModel";
 
 export class ControllerEPG extends Model {
   public isVisible = false;
-  public opacity = new Animated.Value(0);
+  // public opacity = new Animated.Value(0);
   private _epgModel: EpgModel = new EpgModel();
   constructor() {
     super();
@@ -19,23 +18,26 @@ export class ControllerEPG extends Model {
       callBack && callBack();
     });
 
-    Animated.timing(this.opacity, {
-      toValue: 1,
-      duration: 200,
-      useNativeDriver: true,
-    }).start(() => {});
+    // Animated.timing(this.opacity, {
+    //   toValue: 1,
+    //   duration: 200,
+    //   useNativeDriver: true,
+    // }).start(() => {});
     // this._epgModel.loadAllEpgs();
   };
 
   public hide = (callBack?: (() => any) | undefined) => {
-    Animated.timing(this.opacity, {
-      toValue: 0,
-      duration: 200,
-      useNativeDriver: true,
-    }).start(() => {
       callBack && callBack();
       this.isVisible = false;
       this.updateMe();
-    });
+    // Animated.timing(this.opacity, {
+    //   toValue: 0,
+    //   duration: 200,
+    //   useNativeDriver: true,
+    // }).start(() => {
+    //   callBack && callBack();
+    //   this.isVisible = false;
+    //   this.updateMe();
+    // });
   };
 }

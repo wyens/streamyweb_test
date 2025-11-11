@@ -1,13 +1,13 @@
-import { Animated } from 'react-native';
-import { Model } from '../../../Base/Model.ts';
-import { IptvList } from '../../../Controllers/Pages/HomeStack/IptvPage/IptvList.ts';
-import { IptvChannel } from '../../../Controllers/Pages/HomeStack/IptvPage/IptvChannel.ts';
-import { controllers } from '../../../Controllers/Controllers.ts';
-import { ControllerControlsVideo } from '../ControllerControlsVideo.ts';
+import {Model} from "~/src/Base/Model";
+import {IptvList} from "~/src/Controllers/Pages/HomeStack/IptvPage/IptvList";
+import type {ControllerControlsVideo} from "~/src/Models/ControllerControlsVideo/ControllerControlsVideo";
+import {controllers} from "~/src/Controllers/Controllers";
+import type {IptvChannel} from "~/src/Controllers/Pages/HomeStack/IptvPage/IptvChannel";
+
 
 export class ControllerChannelList extends Model {
   public isVisible = false;
-  public opacity = new Animated.Value(0);
+  // public opacity = new Animated.Value(0);
   private readonly _iptvList: IptvList;
   private _selectedCategory: any
   private _controls: ControllerControlsVideo
@@ -34,29 +34,32 @@ export class ControllerChannelList extends Model {
       callBack && callBack();
     });
 
-    Animated.timing(this.opacity, {
-      toValue: 1,
-      duration: 200,
-      useNativeDriver: true,
-    }).start(() => {});
+    // Animated.timing(this.opacity, {
+    //   toValue: 1,
+    //   duration: 200,
+    //   useNativeDriver: true,
+    // }).start(() => {});
 
     const selectedNow = controllers().main.videoPlayerPage.initialChannel
     this._iptvList.loadData({selected_channel_hash: selectedNow?.channelHash}).then();
   };
 
   public hide = (callBack?: (() => any) | undefined) => {
-    Animated.timing(this.opacity, {
-      toValue: 0,
-      duration: 200,
-      useNativeDriver: true,
-    }).start(() => {
       callBack && callBack();
       this.isVisible = false;
       this.updateMe();
-      // if(this._controls){
-      //   this._controls!.updateMe()
-      // }
-    });
+    // Animated.timing(this.opacity, {
+    //   toValue: 0,
+    //   duration: 200,
+    //   useNativeDriver: true,
+    // }).start(() => {
+    //   callBack && callBack();
+    //   this.isVisible = false;
+    //   this.updateMe();
+    //   // if(this._controls){
+    //   //   this._controls!.updateMe()
+    //   // }
+    // });
   };
 
 
