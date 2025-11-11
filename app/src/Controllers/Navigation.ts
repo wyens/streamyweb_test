@@ -1,13 +1,20 @@
 import type { NavigateFunction } from "react-router";
 import { HandleTask } from "../Base/HandleTask/HandleTask";
 
+type RouteMap = Record<string, string>;
+
 class NavigatorImpl {
     private _navigate?: NavigateFunction;
     private _navigation: any;
     private readonly _handle: HandleTask;
     private _navigationMounded: boolean;
-    private _saveScreen: Array<string>;
-    private _currentScreen: string = '';
+    private _saveScreen: string[];
+    private _currentScreen = "";
+    private _routeMap: RouteMap = {
+        Movies: "/app/movies",
+        MainListPage: "/app/home",
+        VideoPlayerPage: "/app/player",
+    };
 
     constructor() {
         this._handle = new HandleTask();
@@ -15,44 +22,67 @@ class NavigatorImpl {
         this._saveScreen = [];
     }
 
+    setRouteMap(map: RouteMap) {
+        this._routeMap = { ...this._routeMap, ...map };
+    }
+
     setNavigate(navigate: NavigateFunction) {
         this._navigate = navigate;
         this._navigationMounded = true;
         this._handle.do();
     }
-    isReady() { return !!this._navigate; }
 
-    to(path: string, state?: any) {
+    private resolvePath(pageNameOrPath: string) {
+        if (pageNameOrPath.startsWith("/")) return pageNameOrPath;
+        return this._routeMap[pageNameOrPath] ?? `/${pageNameOrPath}`;
+    }
+
+    to(pathOrName: string, state?: any) {
         if (!this._navigate) return;
+        const path = this.resolvePath(pathOrName);
         this.shiftScreen(path);
         this._navigate(path, state ? { state } : undefined);
         this.afterNavigation();
     }
-    replace(path: string, state?: any) {
+
+    replace(pathOrName: string, state?: any) {
         if (!this._navigate) return;
+        const path = this.resolvePath(pathOrName);
         this.shiftScreen(path);
         this._navigate(path, { replace: true, state });
         this.afterNavigation();
     }
+
     back() {
-        this._navigate?.(-1 as any);
+        if (this._saveScreen.length >= 2) {
+            this._saveScreen.pop();
+            const prev = this._saveScreen[this._saveScreen.length - 1];
+            this.to(prev);
+            return;
+        }
+        if (this._navigate) {
+            (this._navigate as any)(-1);
+            return;
+        }
+        this.to(this._routeMap.Movies ?? "/");
     }
 
-    set = (_navigation: any) => {
-        this._navigation = _navigation;
+    set = (navigation: any) => {
+        this._navigation = navigation;
         this._navigationMounded = true;
         this._handle.do();
     };
 
-    navigate = (pageName: string) => {
+    navigate = (pageNameOrPath: string, state?: any) => {
         if (this._navigate) {
-            this.to(pageName);
+            this.to(pageNameOrPath, state);
             return;
         }
         if (this._navigation?.navigate) {
             try {
-                this.shiftScreen(pageName);
-                this._navigation.navigate(pageName);
+                const target = this.resolvePath(pageNameOrPath);
+                this.shiftScreen(target);
+                this._navigation.navigate(target, { state });
                 this.afterNavigation();
             } catch (e) {
                 console.log("navigation error", e);
@@ -61,8 +91,7 @@ class NavigatorImpl {
     };
 
     public goBack = () => {
-        if (this._navigate) this.back();
-        else this._navigation?.goBack?.();
+        this.back();
     };
 
     get navigationMounted() { return this._navigationMounded; }
@@ -70,34 +99,36 @@ class NavigatorImpl {
     get navigation() { return this._navigation; }
     get currentScreen() { return this._currentScreen; }
 
-    clearFromHistory = (pageName: string) => {
-        this._saveScreen = this._saveScreen.filter((s) => s !== pageName);
+    clearFromHistory = (pageNameOrPath: string) => {
+        const target = this.resolvePath(pageNameOrPath);
+        this._saveScreen = this._saveScreen.filter((s) => s !== target);
         this._saveScreen.pop();
     };
 
-    shiftScreen = (pageName: string) => {
-        if (this._currentScreen === pageName) return;
-        this._saveScreen.push(pageName);
-        this._currentScreen = pageName;
-        if (this._saveScreen.length > 5) {
-            this._saveScreen.shift();
-        }
+    shiftScreen = (pageNameOrPath: string) => {
+        const target = this.resolvePath(pageNameOrPath);
+        if (this._currentScreen === target) return;
+        this._saveScreen.push(target);
+        this._currentScreen = target;
+        if (this._saveScreen.length > 5) this._saveScreen.shift();
     };
 
-    focusScreen = (pageName: string) => {
+    focusScreen = (pageNameOrPath: string) => {
+        const target = this.resolvePath(pageNameOrPath);
         const lastOne = this._saveScreen[this._saveScreen.length - 1];
-        if (pageName !== lastOne) this.shiftScreen(pageName);
+        if (target !== lastOne) this.shiftScreen(target);
     };
 
     afterNavigation = () => {};
 
-
-    public goToHomePage = (_data?: any) => {
-        this.navigate("/home");
+    public goToMainListPage = (_data?: any) => {
+        this.navigate("MainListPage");
     };
-
+    public goToHomePage = (_data?: any) => {
+        this.navigate("/home", {id: '1'});
+    };
     public goToVideoPlayerPage = (_channel: any) => {
-        this.navigate("/player");
+        this.navigate("VideoPlayerPage");
     };
 }
 
@@ -105,6 +136,6 @@ const key = "__app__navigator__";
 const g = globalThis as any;
 if (!g[key]) g[key] = new NavigatorImpl();
 
-export function appNavigator(): NavigatorImpl {
+export function appNavigator() {
     return g[key] as NavigatorImpl;
 }
