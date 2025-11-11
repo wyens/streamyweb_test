@@ -3,7 +3,7 @@ import  {Timer} from "~/src/Models/ControllerControlsVideo/Timer";
 import DeviceInfoCollector from "~/src/Base/DeviceInfoCollector";
 import {loadData, UserDataProvider} from "~/src/Base/UserDataProvider";
 import {controllers} from "~/src/Controllers/Controllers";
-import {appNavigator} from "~/Navigation/Navigation";
+import {appNavigator} from "~/src/Controllers/Navigation";
 
 
 export enum StateLogin {
@@ -30,7 +30,7 @@ class LoginMainModel extends Model {
       this.state = StateLogin.code;
     }
       setTimeout(() => {
-          appNavigator().to("/home");
+          appNavigator().goToHomePage({});
       }, 5000)
   };
 

@@ -13,7 +13,6 @@ import "./src/assets/fonts/fonts.css";
 import {AppStateController} from "~/src/Views/Core/AppStateController";
 import {controllers} from "~/src/Controllers/Controllers";
 import NavigationBinder from "~/Navigation/NavigationBinder";
-import {appNavigator} from "~/Navigation/Navigation";
 
 export const links: Route.LinksFunction = () => [
     { rel: "preconnect", href: "https://fonts.googleapis.com" },

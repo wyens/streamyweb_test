@@ -1,6 +1,6 @@
 import { PageModel } from '../Base/PageModel';
 import { PageScroll } from '../Models/PageScroll';
-import { navigator } from './Navigation';
+import {appNavigator} from "~/src/Controllers/Navigation";
 
 class PageController {
   private _pages: Array<PageModel>;
@@ -21,7 +21,7 @@ class PageController {
   go = (pageName: string) => {
     const find = this._pages.find((p) => p.pageName === pageName);
     if (find) {
-      navigator().navigate(find.pageName);
+      appNavigator().navigate(find.pageName);
     } else {
       console.error("Page don't exist");
     }

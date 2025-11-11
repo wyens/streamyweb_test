@@ -1,6 +1,6 @@
 import { controllers } from '../Controllers/Controllers';
-import { navigator } from '../Controllers/Navigation';
 import { Model } from './Model';
+import {appNavigator} from "~/src/Controllers/Navigation";
 
 class PageModel extends Model {
   private readonly _pageName: string;
@@ -25,7 +25,7 @@ class PageModel extends Model {
 
   pageMounted = () => {};
   pageFocus = () => {
-    navigator().focusScreen(this._pageName)
+    appNavigator().focusScreen(this._pageName)
     controllers().main.menu.setVisible(this._showMenu)
     this.onFocus()
   };
