@@ -8,11 +8,12 @@ import {
 } from "react-router";
 import type { Route } from "./+types/root";
 import React, { useEffect, useState } from "react";
-
 import "./app.css";
 import "./src/assets/fonts/fonts.css";
 import {AppStateController} from "~/src/Views/Core/AppStateController";
 import {controllers} from "~/src/Controllers/Controllers";
+import NavigationBinder from "~/Navigation/NavigationBinder";
+import {appNavigator} from "~/Navigation/Navigation";
 
 export const links: Route.LinksFunction = () => [
     { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -46,12 +47,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
 export default function App() {
     const [ready, setReady] = useState(false);
 
-    // const NaviUse = () => {
-    //     const navigation = useNavigation()
-    //     navigator().setNavigation(navigation)
-    //     return null;
-    // }
-
     const navigate = useNavigate();
     useEffect(() => {
         let cancelled = false;
@@ -81,7 +76,12 @@ export default function App() {
         );
     }
 
-    return <Outlet />;
+    return (
+    <>
+        <NavigationBinder />
+        <Outlet />
+    </>
+    )
 }
 
 const s: Record<string, React.CSSProperties> = {

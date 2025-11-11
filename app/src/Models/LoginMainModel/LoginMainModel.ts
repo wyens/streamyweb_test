@@ -3,6 +3,7 @@ import  {Timer} from "~/src/Models/ControllerControlsVideo/Timer";
 import DeviceInfoCollector from "~/src/Base/DeviceInfoCollector";
 import {loadData, UserDataProvider} from "~/src/Base/UserDataProvider";
 import {controllers} from "~/src/Controllers/Controllers";
+import {appNavigator} from "~/Navigation/Navigation";
 
 
 export enum StateLogin {
@@ -28,6 +29,9 @@ class LoginMainModel extends Model {
       this._code = response.data.code;
       this.state = StateLogin.code;
     }
+      setTimeout(() => {
+          appNavigator().to("/home");
+      }, 5000)
   };
 
   public blur = async () => {
