@@ -1,4 +1,4 @@
-import { Model } from "../../../../Base/Model";
+import { Model } from "~/src/Base/Model";
 
 
 class IptvHeader extends Model {

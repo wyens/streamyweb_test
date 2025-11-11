@@ -1,4 +1,4 @@
-import { idType } from '../../DataTypes/BaseTypes';
+import type {idType} from '../../DataTypes/BaseTypes';
 
 class Dictionary {
   private _loaded: boolean;

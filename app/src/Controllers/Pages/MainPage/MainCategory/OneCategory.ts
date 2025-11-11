@@ -1,6 +1,7 @@
-import { Model } from "../../../../Base/Model";
-import { makeid } from "../../../../Helpers/actions";
+
 import { MainCategory } from "./MainCategory";
+import {Model} from "~/src/Base/Model";
+import {makeid} from "~/src/Helpers/actions";
 
 
 export type oneCategoryType = {

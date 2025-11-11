@@ -1,11 +1,9 @@
-import { UserDataProvider, loadData } from "../../../../Base/UserDataProvider";
-import { LISTSIZE } from "../../../../Constants/settings";
-import { channelItemProps } from "../../../../DataTypes/BaseTypes";
-import { List } from "../../../../Models/List/List";
-import { controllers } from "../../../Controllers";
-import { OneCategory } from "../../MainPage/MainCategory/OneCategory";
-import { ChannelSlots } from "./ChannelSlots";
-import { IptvChannel } from "./IptvChannel";
+import {List} from "~/src/Models/List/List";
+import type {OneCategory} from "~/src/Controllers/Pages/MainPage/MainCategory/OneCategory";
+import {controllers} from "~/src/Controllers/Controllers";
+import {loadData, UserDataProvider} from "~/src/Base/UserDataProvider";
+import type {channelItemProps} from "~/src/DataTypes/BaseTypes";
+import {IptvChannel} from "~/src/Controllers/Pages/HomeStack/IptvPage/IptvChannel";
 
 
 class IptvList extends List {

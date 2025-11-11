@@ -1,8 +1,7 @@
-
-import { Model } from "../../../../Base/Model";
-import { loadData, UserDataProvider } from "../../../../Base/UserDataProvider";
-import { CategoryLine } from "./CategoryLine";
-import { OneCategory, oneCategoryType } from "./OneCategory";
+import  {OneCategory, type oneCategoryType} from "~/src/Controllers/Pages/MainPage/MainCategory/OneCategory";
+import {Model} from "~/src/Base/Model";
+import  {CategoryLine} from "~/src/Controllers/Pages/MainPage/MainCategory/CategoryLine";
+import {loadData, UserDataProvider} from "~/src/Base/UserDataProvider";
 
 type mainCategoryModel = {
     categoryChanged: (category: OneCategory) => void;

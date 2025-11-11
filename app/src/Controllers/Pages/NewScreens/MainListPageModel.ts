@@ -1,14 +1,11 @@
-import { Model } from "../../../Base/Model"
-import { RemoteEventType } from "../../../Base/RemoteControls"
-import { Timeout } from "../../../Base/Timeout"
-import { controllers } from "../../Controllers"
-import { IptvPageList } from "../MainPage/IptvList/IptvPageList"
-import { MainCategory } from "../MainPage/MainCategory/MainCategory"
-import { OneCategory } from "../MainPage/MainCategory/OneCategory"
-import React from 'react';
-import { HeaderPageWithName } from '../../../Views/Components/HeaderPage/HeaderPageWithName.tsx';
-import { ControllerLogout } from "../../../Models/ControllerControlsVideo/ControllerLogout.ts"
-
+import {Model} from "~/src/Base/Model";
+import  {ControllerLogout} from "~/src/Models/ControllerControlsVideo/ControllerLogout";
+import  {MainCategory} from "~/src/Controllers/Pages/MainPage/MainCategory/MainCategory";
+import  {IptvPageList} from "~/src/Controllers/Pages/MainPage/IptvList/IptvPageList";
+import {Timeout} from "~/src/Base/Timeout";
+import type {HeaderPageWithName} from "~/src/Views/Components/HeaderPage/HeaderPageWithName";
+import React from "react";
+import type {OneCategory} from "~/src/Controllers/Pages/MainPage/MainCategory/OneCategory";
 
 
 class MainListPageModel extends Model {
@@ -59,25 +56,25 @@ class MainListPageModel extends Model {
         return this._headerLogout
     }
 
-    RemoteEvent = (type: RemoteEventType) => {
-      console.log('MainListPage RemoteEvent type', type)
-        if(type === RemoteEventType.Left){
-            const find = this._iptvPage.iptvList.localitems.find(oc=>oc.isMainTypeFocused)
-            if(find){
-                this._categories.focusOnSelectedItem()
-            }
-        }
-        if(type === RemoteEventType.Back){
-          if (this.controllerLogout.isVisible){
-            this.controllerLogout.hideControllers()
-            return
-          }
-            const find = this._iptvPage.iptvList.localitems.find(oc=>oc.isMainTypeFocused)
-            if(find){
-                this._categories.focusOnSelectedItem()
-            }
-        }
-    }
+    // RemoteEvent = (type: RemoteEventType) => {
+    //   console.log('MainListPage RemoteEvent type', type)
+    //     if(type === RemoteEventType.Left){
+    //         const find = this._iptvPage.iptvList.localitems.find(oc=>oc.isMainTypeFocused)
+    //         if(find){
+    //             this._categories.focusOnSelectedItem()
+    //         }
+    //     }
+    //     if(type === RemoteEventType.Back){
+    //       if (this.controllerLogout.isVisible){
+    //         this.controllerLogout.hideControllers()
+    //         return
+    //       }
+    //         const find = this._iptvPage.iptvList.localitems.find(oc=>oc.isMainTypeFocused)
+    //         if(find){
+    //             this._categories.focusOnSelectedItem()
+    //         }
+    //     }
+    // }
 
     get categories(){
         return this._categories

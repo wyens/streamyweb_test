@@ -1,6 +1,6 @@
 import { Model } from '../../Base/Model';
 import { LISTSIZE, SCROLLUPDATELENGTH } from '../../Constants/settings';
-import { idType } from '../../DataTypes/BaseTypes';
+import type {idType} from '../../DataTypes/BaseTypes';
 import { makeid } from '../../Helpers/actions';
 import { Input } from '../../Views/Components/InputItem';
 import { ListItem } from './ListItem';

@@ -1,7 +1,7 @@
-import { Model } from '../../../../Base/Model';
-import { HMOnTime, dayDifference, dayDifferenceFromString, timeParse } from '../../../../Helpers/DateTime';
-import { EpgItem, epgItemModel } from './EpgItem';
-import { EPG_ITEM_HEIGHT } from '../../../../Views/Screens/MainStack/IptvPage/EpgItemView.tsx';
+import { Model } from '~/src/Base/Model';
+import { HMOnTime, dayDifferenceFromString } from '~/src/Helpers/DateTime';
+import { EpgItem, type epgItemModel } from './EpgItem';
+import { EPG_ITEM_HEIGHT } from '~/src/Views/Screens/MainStack/IptvPage/EpgItemView';
 
 export type epgOneChannelResponceType = {
   channel_name: string;

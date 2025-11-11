@@ -1,9 +1,5 @@
 import React from 'react';
-import { Pressable, StyleSheet } from 'react-native';
-import { inputHeight } from '../../assets/styles/paddings';
-import { idType } from '../../DataTypes/BaseTypes';
-import { Icon } from './Icon';
-import { Text } from './TextItem';
+import type {idType} from '../../DataTypes/BaseTypes';
 
 export type selectorItemProps = {
   label: string;
@@ -28,23 +24,24 @@ class SelectorItem extends React.Component {
     const { label, selected, icon } = this.props;
     const selectedStyle = selected ? styles.selected : {};
     return (
-      <Pressable style={[styles.container, selectedStyle]} onPress={this.onPressItem}>
-        {icon && <Icon style="selectorItem" source={icon} />}
-        <Text>{label}</Text>
-      </Pressable>
+        null
+      // <Pressable style={[styles.container, selectedStyle]} onPress={this.onPressItem}>
+      //   {icon && <Icon style="selectorItem" source={icon} />}
+      //   <Text>{label}</Text>
+      // </Pressable>
     );
   }
 }
 
 export { SelectorItem };
-
-const styles = StyleSheet.create({
-  container: {
-    height: inputHeight,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  selected: {
-    backgroundColor: 'rgba(255,255,255,.1)',
-  },
-});
+//
+// const styles = StyleSheet.create({
+//   container: {
+//     height: inputHeight,
+//     justifyContent: 'center',
+//     alignItems: 'center',
+//   },
+//   selected: {
+//     backgroundColor: 'rgba(255,255,255,.1)',
+//   },
+// });

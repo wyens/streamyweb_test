@@ -1,5 +1,5 @@
-import { Model } from '../../../../Base/Model';
-import { Timeout } from '../../../../Base/Timeout';
+import { Model } from '~/src/Base/Model';
+import { Timeout } from '~/src/Base/Timeout';
 import { controllers } from '../../../Controllers';
 
 class EpgModel extends Model {

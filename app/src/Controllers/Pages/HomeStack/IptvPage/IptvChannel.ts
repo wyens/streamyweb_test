@@ -1,10 +1,7 @@
-import { loadData, UserDataProvider } from "../../../../Base/UserDataProvider";
-import { channelItemProps } from "../../../../DataTypes/BaseTypes";
-import { ListItem } from "../../../../Models/List/ListItem";
-import { controllers } from "../../../Controllers";
+import type {channelItemProps} from "~/src/DataTypes/BaseTypes";
+import { ListItem } from "~/src/Models/List/ListItem";
 import { ChannelSlots } from "./ChannelSlots";
 import { EpgList } from "./EpgList";
-import { createThumbnail } from 'react-native-create-thumbnail';
 
 class IptvChannel extends ListItem {
     private _data: channelItemProps

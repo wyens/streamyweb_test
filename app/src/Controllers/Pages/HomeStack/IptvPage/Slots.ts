@@ -1,6 +1,6 @@
-import { Model } from "../../../../Base/Model";
-import { timeParse } from "../../../../Helpers/DateTime";
-import { OneTimeSlot, timeSlotModel } from "./OneTimeSlot";
+import {Model} from "~/src/Base/Model";
+import {OneTimeSlot, type timeSlotModel} from "~/src/Controllers/Pages/HomeStack/IptvPage/OneTimeSlot";
+import {timeParse} from "~/src/Helpers/DateTime";
 
 
 class Slots extends Model {

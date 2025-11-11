@@ -1,13 +1,12 @@
-import { Model } from '../../../../Base/Model';
-import { IptvList } from '../../HomeStack/IptvPage/IptvList';
-import { IptvHeader } from './IptvHeader';
-import { IptvChannel } from '../../HomeStack/IptvPage/IptvChannel.ts';
-import { navigator } from '../../../Navigation.ts';
-import { Dimensions } from 'react-native';
-import { DISTANCE_BETWEEN_ITEMS } from '../../../../ViewsNew/MainListPage/Components/Iptvs/IptvHeaderRow.tsx';
-import { EpgModel } from '../../HomeStack/IptvPage/EpgModel.ts';
-import { LISTSIZE, PRELOAD_ITEMS_FROM_COUNT } from '../../../../Constants/settings.ts';
-import { Slots } from '../../HomeStack/IptvPage/Slots.ts';
+import {Model} from "~/src/Base/Model";
+import  {IptvList} from "~/src/Controllers/Pages/HomeStack/IptvPage/IptvList";
+import  {IptvHeader} from "~/src/Controllers/Pages/MainPage/IptvList/IptvHeader";
+import  {EpgModel} from "~/src/Controllers/Pages/HomeStack/IptvPage/EpgModel";
+import  {Slots} from "~/src/Controllers/Pages/HomeStack/IptvPage/Slots";
+import {LISTSIZE} from "~/src/Constants/settings";
+import {IptvChannel} from "~/src/Controllers/Pages/HomeStack/IptvPage/IptvChannel";
+import {DISTANCE_BETWEEN_ITEMS} from "~/src/ViewsNew/MainListPage/Components/Iptvs/IptvHeaderRow";
+
 
 type iptvPageListModel = {
   listLoaded?: ()=>void
@@ -102,17 +101,17 @@ class IptvPageList extends Model {
     }
   }
 
-  increaseMaxLimit = (pos:number) => {
-    const screenHeight = Dimensions.get("screen").height
-    const oneItemHeight = screenHeight*.2-DISTANCE_BETWEEN_ITEMS
-    if(pos > oneItemHeight*this._maxItemsThumbnail){
-        // console.log("need to increase", pos, oneItemHeight*this._maxItemsThumbnail - screenHeight)
-        this._maxItemsThumbnail += 12
-        this._channelToLoad.generateThumbnail()
-    } else {
-        // console.log("we're good")
-    }
-  }
+  // increaseMaxLimit = (pos:number) => {
+  //   const screenHeight = Dimensions.get("screen").height
+  //   const oneItemHeight = screenHeight*.2-DISTANCE_BETWEEN_ITEMS
+  //   if(pos > oneItemHeight*this._maxItemsThumbnail){
+  //       // console.log("need to increase", pos, oneItemHeight*this._maxItemsThumbnail - screenHeight)
+  //       this._maxItemsThumbnail += 12
+  //       this._channelToLoad.generateThumbnail()
+  //   } else {
+  //       // console.log("we're good")
+  //   }
+  // }
 
   onVerticalScroll = (pos: number) => {
     // this.increaseMaxLimit(pos)

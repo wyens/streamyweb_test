@@ -1,5 +1,5 @@
 import { Model } from "../../Base/Model";
-import { idType } from "../../DataTypes/BaseTypes";
+import type {idType} from "../../DataTypes/BaseTypes";
 import { makeid } from "../../Helpers/actions";
 
 type listItemModel = {

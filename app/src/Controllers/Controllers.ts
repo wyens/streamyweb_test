@@ -1,6 +1,7 @@
 
 import { HomeStackModel } from './Stacks/HomeStackModel';
 import {AuthController} from "~/src/Controllers/AuthController";
+import  {AbortControl} from "~/src/Controllers/AbortControl";
 
 
 class ControllersImpl {
@@ -19,7 +20,7 @@ class ControllersImpl {
   // private readonly _updateModule: UpdateModule;
   // private readonly _remoteControls: RemoteControls;
   // private readonly _appStateControls: AppStateControls;
-  // private readonly _abortControl: AbortControl
+  private readonly _abortControl: AbortControl
 
   constructor() {
     // this._firebaseController = new FirebaseController();
@@ -103,9 +104,9 @@ class ControllersImpl {
   //   return this._appStateControls;
   // }
   //
-  // get abortControl(){
-  //   return this._abortControl
-  // }
+  get abortControl(){
+   return  this._abortControl ??= new AbortControl();
+  }
 }
 
 // @ts-ignore

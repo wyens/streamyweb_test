@@ -1,7 +1,4 @@
 import { PageModel } from '../../Base/PageModel';
-import { authBody } from '../../DataTypes/BaseResponse';
-import { idType } from '../../DataTypes/BaseTypes';
-import { Input } from '../../Views/Components/InputItem';
 import { controllers } from '../Controllers';
 // import { PhoneInput } from './WelcomePage/PhoneInput';
 // import { dictionary } from '../Dictionaries';

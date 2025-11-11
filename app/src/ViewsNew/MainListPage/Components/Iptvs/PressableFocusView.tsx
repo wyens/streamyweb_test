@@ -1,6 +1,5 @@
 import React from "react";
-import { Pressable, StyleSheet, TouchableHighlight } from "react-native";
-import { navigator } from "../../../../Controllers/Navigation";
+import {appNavigator} from "~/src/Controllers/Navigation";
 
 type pressableState = {
     focused: boolean;
@@ -43,39 +42,40 @@ class PressableFocusView extends React.Component<pressableProps> {
     }
 
     pressGoToChannel = () =>{ 
-        navigator().goToVideoPlayerPage(this.props.channel)
+        appNavigator().goToVideoPlayerPage(this.props.channel)
     }
     render(){
         const { focused } = this.state
         const { children, style, onPress, setFocusItem } = this.props
         const pressAction = onPress || this.pressGoToChannel
-        return <Pressable
-                    ref={setFocusItem}
-                    onPress={pressAction}
-                    focusable={true}
-                    // @ts-ignore
-                    isTVSelectable={true}
-                    hasTVPreferredFocus={focused || this.props.focused}
-                    onFocus={this.onFocus}
-                    onBlur={this.onBlur}
-                    style={[style, styles.oneItem, focused && styles.oneItemSelected]}
-                    // @ts-ignore
-                    // autoFocus={false}
-                    >
-                {children}
-            </Pressable>
+        return null;
+        // return <Pressable
+        //             ref={setFocusItem}
+        //             onPress={pressAction}
+        //             focusable={true}
+        //             // @ts-ignore
+        //             isTVSelectable={true}
+        //             hasTVPreferredFocus={focused || this.props.focused}
+        //             onFocus={this.onFocus}
+        //             onBlur={this.onBlur}
+        //             style={[style, styles.oneItem, focused && styles.oneItemSelected]}
+        //             // @ts-ignore
+        //             // autoFocus={false}
+        //             >
+        //         {children}
+        //     </Pressable>
     }
 }
 
 export { PressableFocusView }
 
-const styles = StyleSheet.create({
-    oneItem: {
-        borderWidth: 2,
-        borderColor: 'rgba(0,0,0,0)',
-    },
-    oneItemSelected: {
-        borderWidth: 2,
-        borderColor: '#fff',
-    },
-})
+// const styles = StyleSheet.create({
+//     oneItem: {
+//         borderWidth: 2,
+//         borderColor: 'rgba(0,0,0,0)',
+//     },
+//     oneItemSelected: {
+//         borderWidth: 2,
+//         borderColor: '#fff',
+//     },
+// })

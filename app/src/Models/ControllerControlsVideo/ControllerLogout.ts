@@ -1,13 +1,13 @@
-import { Model } from '../../Base/Model';
-import { Animated, Easing } from 'react-native';
-import { controllers } from '../../Controllers/Controllers.ts';
-import { coreupdate } from '../../Helpers/actions.ts';
-import { UPDATE } from '../../Helpers/constants.ts';
+import {Model} from "~/src/Base/Model";
+import {controllers} from "~/src/Controllers/Controllers";
+import {coreupdate} from "~/src/Helpers/actions";
+import {UPDATE} from "~/src/Helpers/constants";
+
 
 class ControllerLogout extends Model {
   private _isVisible = false;
 
-  private _opacity = new Animated.Value(0);
+  // private _opacity = new Animated.Value(0);
 
   private _duration = 520;
 
@@ -19,9 +19,9 @@ class ControllerLogout extends Model {
   get isVisible() {
     return this._isVisible;
   }
-  get opacity() {
-    return this._opacity;
-  }
+  // get opacity() {
+  //   return this._opacity;
+  // }
 
   public showControllers = () => {
     if (this._isVisible) {
@@ -29,12 +29,12 @@ class ControllerLogout extends Model {
     }
     this._isVisible = true;
     this.updateMe();
-    Animated.timing(this._opacity, {
-      toValue: 1,
-      duration: this._duration,
-      easing: Easing.out(Easing.cubic),
-      useNativeDriver: true,
-    }).start();
+    // Animated.timing(this._opacity, {
+    //   toValue: 1,
+    //   duration: this._duration,
+    //   easing: Easing.out(Easing.cubic),
+    //   useNativeDriver: true,
+    // }).start();
   };
 
   public hideControllers = (immediate: boolean = false): Promise<void> => {
@@ -42,24 +42,27 @@ class ControllerLogout extends Model {
       return Promise.resolve();
     }
     if (immediate) {
-      this._opacity.stopAnimation();
-      this._opacity.setValue(0);
+      // this._opacity.stopAnimation();
+      // this._opacity.setValue(0);
       this._isVisible = false;
       this.updateMe();
       return Promise.resolve();
     }
 
     return new Promise<void>((resolve) => {
-      Animated.timing(this._opacity, {
-        toValue: 0,
-        duration: this._duration,
-        easing: Easing.in(Easing.cubic),
-        useNativeDriver: true,
-      }).start(() => {
         this._isVisible = false;
         this.updateMe();
         resolve();
-      });
+      // Animated.timing(this._opacity, {
+      //   toValue: 0,
+      //   duration: this._duration,
+      //   easing: Easing.in(Easing.cubic),
+      //   useNativeDriver: true,
+      // }).start(() => {
+      //   this._isVisible = false;
+      //   this.updateMe();
+      //   resolve();
+      // });
     });
   };
 

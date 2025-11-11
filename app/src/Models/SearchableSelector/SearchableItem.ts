@@ -1,4 +1,4 @@
-import { idType } from '../../DataTypes/BaseTypes';
+import type {idType} from '../../DataTypes/BaseTypes';
 import { List } from '../List/List';
 import { ListItem } from '../List/ListItem';
 

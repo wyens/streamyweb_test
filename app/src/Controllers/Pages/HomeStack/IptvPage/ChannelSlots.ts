@@ -1,6 +1,6 @@
-import { HMOnTime } from "../../../../Helpers/DateTime";
-import { EpgItem, epgItemModel } from "./EpgItem";
-import { OneTimeSlot, timeSlotModel } from "./OneTimeSlot";
+import { HMOnTime } from "~/src/Helpers/DateTime";
+import { EpgItem, type epgItemModel } from "./EpgItem";
+import { OneTimeSlot, type timeSlotModel } from "./OneTimeSlot";
 import { Slots } from "./Slots";
 
 type channelSlotsModel = {

@@ -1,5 +1,4 @@
-import { Animated } from "react-native";
-import { Model } from "../../../../Base/Model";
+import { Model } from "~/src/Base/Model";
 
 export const PADDING_ON_CATEGORY_LIST = 50
 
@@ -8,8 +7,8 @@ class CategoryLine extends Model {
 
     private _layout: any = null;
     private _visible: boolean = false;
-    private _animatedX = new Animated.Value(0);
-    private _animatedWidth = new Animated.Value(0);
+    // private _animatedX = new Animated.Value(0);
+    // private _animatedWidth = new Animated.Value(0);
     private _sectionEnabled: boolean = false
 
     setSectionEnabled = (bool: boolean) => { 
@@ -47,28 +46,28 @@ class CategoryLine extends Model {
             // this._animatedWidth.setValue(layout.width);
             
             // Then animate if needed
-            Animated.parallel([
-            Animated.timing(this._animatedX, {
-                toValue: layout.x - PADDING_ON_CATEGORY_LIST,
-                duration: 200,
-                useNativeDriver: false,
-            }),
-            Animated.timing(this._animatedWidth, {
-                toValue: layout.width,
-                duration: 200,
-                useNativeDriver: false,
-            })
-            ]).start();
+            // Animated.parallel([
+            // Animated.timing(this._animatedX, {
+            //     toValue: layout.x - PADDING_ON_CATEGORY_LIST,
+            //     duration: 200,
+            //     useNativeDriver: false,
+            // }),
+            // Animated.timing(this._animatedWidth, {
+            //     toValue: layout.width,
+            //     duration: 200,
+            //     useNativeDriver: false,
+            // })
+            // ]).start();
         }
     }
 
-    get left(){
-        return this._animatedX
-    }
-
-    get width(){
-        return this._animatedWidth
-    }
+    // get left(){
+    //     return this._animatedX
+    // }
+    //
+    // get width(){
+    //     return this._animatedWidth
+    // }
 
 }
 
