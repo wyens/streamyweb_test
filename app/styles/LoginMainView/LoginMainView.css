@@ -1,0 +1,171 @@
+.LoginMain_container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    background: #17181E;
+    padding-top: 66px;
+}
+
+.LoginMain_header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.LoginMain_locked {
+    width: 56px;
+    height: 56px;
+    object-fit: contain;
+    margin-right: 15px;
+}
+
+.LoginMain_textHeader {
+    color: #fff;
+    font-size: 38px;
+    font-family: "Graphik", "Inter", system-ui, sans-serif;
+    margin: 0;
+}
+
+.LoginMain_main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 25px;
+}
+
+.LoginMain_textMain {
+    color: #A7ABB7;
+    font-size: 38px;
+    font-family: "Graphik", "Inter", system-ui, sans-serif;
+    margin: 0;
+}
+
+.LoginMain_preloader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 25px;
+    flex-direction: column;
+    text-align: center;
+}
+
+.LoginMain_textPreloader {
+    color: #A7ABB7;
+    font-size: 22px;
+    font-family: "Graphik", "Inter", system-ui, sans-serif;
+    margin: 0;
+    max-width: 960px;
+}
+
+.LoginMain_yourCode {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 45px;
+    margin-bottom: 15px;
+    flex: 1;
+    text-align: center;
+    gap: 16px;
+}
+
+.LoginMain_center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.LoginMain_textYourCode {
+    color: #fff;
+    font-size: 22px;
+    font-family: "Graphik", "Inter", system-ui, sans-serif;
+    margin: 0;
+}
+
+.LoginMain_textYourCodeInfo {
+    color: #A7ABB7;
+    font-size: 20px;
+    font-family: "Graphik", "Inter", system-ui, sans-serif;
+    margin: 0;
+    max-width: 960px;
+}
+
+.LoginMain_pill {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: #1E2A5A;
+    border: 2px solid #3A63FF;
+    border-radius: 15px;
+    padding: 18px 24px;
+    min-width: 680px;
+    margin-top: 15px;
+}
+
+.LoginMain_codeBtn {
+    background: transparent;
+    border: none;
+    outline: none;
+    padding: 0;
+    cursor: default;
+}
+
+.LoginMain_char {
+    color: #fff;
+    font-size: clamp(20px, 5vw, 30px);
+    font-family: "Graphik", "Inter", system-ui, sans-serif;
+    font-weight: 700;
+    letter-spacing: 60px;
+}
+
+/* Спінер */
+@keyframes spin { to { transform: rotate(360deg); } }
+.LoginMain_spinner {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: 4px solid rgba(255,255,255,0.2);
+    border-top-color: #196FFD;
+    animation: spin 1s linear infinite;
+}
+
+/* ===========================
+   АДАПТИВ
+   =========================== */
+
+/* Планшет */
+@media (max-width: 1024px) {
+    .LoginMain_textHeader { font-size: 32px; }
+    .LoginMain_textMain   { font-size: 32px; }
+    .LoginMain_textPreloader { font-size: 20px; }
+    .LoginMain_textYourCode { font-size: 20px; }
+    .LoginMain_textYourCodeInfo { font-size: 18px; max-width: 720px; }
+    .LoginMain_pill { min-width: 520px; }
+    .LoginMain_char { letter-spacing: 32px; }
+}
+
+/* Мобілка */
+@media (max-width: 640px) {
+    .LoginMain_container { padding-top: 12px; }
+    .LoginMain_locked { width: 40px; height: 40px; margin-right: 10px; }
+
+    .LoginMain_textHeader { font-size: 24px; }
+    .LoginMain_textMain   { font-size: 20px; }
+
+    .LoginMain_textPreloader { font-size: 16px; max-width: 90vw; }
+    .LoginMain_textYourCode { font-size: 16px; }
+    .LoginMain_textYourCodeInfo { font-size: 14px; max-width: 90vw; }
+
+    .LoginMain_pill {
+        min-width: 280px;
+        padding: 12px 16px;
+    }
+
+    .LoginMain_char {
+        letter-spacing: 8px;
+        font-size: clamp(16px, 6vw, 22px);
+    }
+}

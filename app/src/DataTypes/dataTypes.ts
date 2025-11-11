@@ -1,0 +1,1 @@
+export type favoritesType = "movie"|"series"|"tv"
