@@ -18,15 +18,12 @@ class IptvHeaderView extends ViewItem {
                 <IptvHeaderRowView centered title="MOST" type="channel" />
                 <div
                     ref={setScrollRef}
-                    style={styles.scroll}
-                    // onWheel={(e) => {
-                    //     // коліщатко вниз -> горизонтальний скрол
-                    //     if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
-                    //         (e.currentTarget as HTMLDivElement).scrollLeft += e.deltaY;
-                    //         e.preventDefault();
-                    //     }
-                    // }}
-                    onFocusCapture={() => console.error('FOCUS CAPTURED ON SCROLL')}
+                    className={'scroll-x scroll-while'}
+                    onWheel={(e) => {
+                        if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+                            (e.currentTarget as HTMLDivElement).scrollLeft += e.deltaY;
+                        }
+                    }}
                 >
                     {timeSlots.map((slot: any, index: number) => (
                         <IptvHeaderRowView key={index} title={slot.title} type={slot.type} />

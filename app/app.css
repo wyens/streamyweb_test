@@ -19,17 +19,22 @@ body {
     background-color: #17181E;
     min-height: 100vh;
 }
-.scroll-x {
-    display: flex;              /* елементи в ряд */
-    overflow-x: auto;           /* вмикаємо горизонтальний скрол */
+.scroll-while {
+    display: flex;
+    overflow-x: auto;
     overflow-y: hidden;
-    white-space: nowrap;        /* якщо діти inline/inline-block */
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;      /* Firefox */
-    -ms-overflow-style: none;   /* IE/старий Edge */
+    width: 100%;
+    overscroll-behavior: contain;
+    touch-action: pan-y;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.scroll-x {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 .scroll-x::-webkit-scrollbar {
-    width: 0; height: 0;        /* Chrome/Safari */
+    width: 0; height: 0;
 }
 @keyframes spin {
     to {

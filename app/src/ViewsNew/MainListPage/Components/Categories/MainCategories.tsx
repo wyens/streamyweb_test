@@ -40,7 +40,12 @@ class MainCategoriesView extends ViewItem {
             onKeyDown={this.handleKeyDown}
             tabIndex={0}
         >
-            <div style={styles.itemsContainer}>
+            <div style={styles.itemsContainer} className={'scroll-while'}
+                 onWheel={(e) => {
+                     if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+                         (e.currentTarget as HTMLDivElement).scrollLeft += e.deltaY;
+                     }
+                 }}>
                 {items && items.map((oi) => (
                     <OneCategoryView key={`${oi.id}_${oi.keyId}`} ref={oi.set} controller={oi} />
                 ))}
@@ -59,15 +64,16 @@ const styles: Record<string, React.CSSProperties> = {
     },
     itemsContainer: {
         position: "relative",
-        display: "flex",
-        flexDirection: "row",
-        paddingLeft: 10,
-        width: "100%",
-        borderColor: "#2C2F42",
-        borderBottomWidth: 1,
-        borderBottomStyle: "solid",
-        overflowX: "auto",
-        overflowY: "hidden",
-        scrollbarWidth: "thin",
+        overscrollBehaviorX: "contain",
+        // display: "flex",
+        // flexDirection: "row",
+        // paddingLeft: 10,
+        // width: "100%",
+        // borderColor: "#2C2F42",
+        // borderBottomWidth: 1,
+        // borderBottomStyle: "solid",
+        // overflowX: "auto",
+        // overflowY: "hidden",
+        // scrollbarWidth: "thin",
     },
 };
