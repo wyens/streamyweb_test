@@ -1,28 +1,32 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
-import { Text } from "../Components/TextItem";
+import { TextItem } from "../Components/TextItem";
 
 type loaderProps = {
-    color?: string
-}
+    color?: string;
+};
+
 class LoaderView extends React.Component<loaderProps> {
-    render(){
-        const {color} = this.props
-        const colorStyle = color!==undefined ? {color:color} : {}
-        return <View style={[styles.container]}>
-            <Text customStyle={colorStyle}>Loading ...</Text>
-        </View>
+    render() {
+        const { color } = this.props;
+        const colorStyle = color !== undefined ? { color: color } : {};
+
+        return (
+            <div style={styles.container}>
+                <TextItem customStyle={colorStyle}>Loading ...</TextItem>
+            </div>
+        );
     }
 }
 
-export { LoaderView }
+export { LoaderView };
 
-const styles = StyleSheet.create({
+const styles: Record<string, React.CSSProperties> = {
     container: {
         width: "100%",
         height: "100%",
+        display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        flexDirection: "row"
+        flexDirection: "row",
     },
-})
+};

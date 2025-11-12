@@ -14,7 +14,6 @@ class MainCategoriesView extends ViewItem {
     this.controller.loadCategories();
   }
     private handleKeyDown: React.KeyboardEventHandler<HTMLDivElement> = (e) => {
-        // аналог trapFocusDown для ArrowDown
         if (e.key === 'ArrowDown') {
             if (typeof this.controller.trapFocusDown === 'function') {
                 const shouldTrap = this.controller.trapFocusDown;

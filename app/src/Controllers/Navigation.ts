@@ -1,5 +1,6 @@
 import type { NavigateFunction } from "react-router";
 import { HandleTask } from "../Base/HandleTask/HandleTask";
+import {controllers} from "~/src/Controllers/Controllers";
 
 type RouteMap = Record<string, string>;
 
@@ -124,8 +125,18 @@ class NavigatorImpl {
     public goToHomePage = (_data?: any) => {
         this.navigate("/home", {id: '1'});
     };
-    public goToVideoPlayerPage = (_channel: any) => {
-        this.navigate("/video", _channel);
+    public goToVideoPlayerPage = (channel: any) => {
+        const currentChannelSelected = controllers().main.videoPlayerPage.initialChannel
+        controllers().main.videoPlayerPage.initialChannel = channel;
+
+        if (channel.onPressItem) {
+            channel.onPressItem();
+        }
+
+        if(this._currentScreen == "VideoPlayerPage" && currentChannelSelected && currentChannelSelected.title != channel.title){
+            controllers().main.videoPlayerPage.init()
+        }
+        this.navigate("/video");
     };
 }
 

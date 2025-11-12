@@ -1,38 +1,39 @@
-import React from 'react'
-import { StyleSheet, View } from "react-native";
-import { WB, WS } from '../../../assets/styles/paddings';
-import { Text } from '../TextItem';
-import { TEXTCOLORS } from '../../../assets/styles/colors';
+import React from "react";
+import { TEXTCOLORS } from "~/src/assets/styles/colors";
+import { WB, WS } from "~/src/assets/styles/paddings";
+import {TextItem} from "~/src/Views/Components/TextItem";
 
-type listTitleProps = { 
+type listTitleProps = {
     title?: string;
-
 }
+
 class ListTitleView extends React.Component {
-    props: listTitleProps
-    constructor(props: listTitleProps){
-        super(props)
-        this.props = props
+    props: listTitleProps;
+    constructor(props: listTitleProps) {
+        super(props);
+        this.props = props;
     }
-    render(){
-        const { title } = this.props
-        if(!title){
-            return null
+
+    render() {
+        const { title } = this.props;
+        if (!title) {
+            return null;
         }
-        return <View style={styles.container}>
-            <Text style='listTitle'>{title}</Text>
-        </View>
+        return (
+            <div style={styles.container}>
+                <TextItem style="listTitle">{title}</TextItem>
+            </div>
+        );
     }
 }
 
-export { ListTitleView }
+export { ListTitleView };
 
-const styles = StyleSheet.create({
+const styles = {
     container: {
-        borderBottomColor: TEXTCOLORS.secondary,
-        borderBottomWidth: 1,
-        paddingHorizontal: WB,
-        paddingBottom: WS
+        borderBottom: `1px solid ${TEXTCOLORS.secondary}`,
+        paddingLeft: WB,
+        paddingRight: WB,
+        paddingBottom: WS,
     },
-
-})
+};

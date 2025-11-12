@@ -1,29 +1,34 @@
 import React from "react";
-import { Image, StyleSheet, View } from "react-native";
 
 type LiveBadgeProps = {
-    pdLeft?:number;
-}
-class LiveBadge extends React.Component<LiveBadgeProps> {
+    pdLeft?: number;
+};
 
-    render(){
-        const { pdLeft } = this.props
-        const paddingStyles = pdLeft!=undefined ? {paddingLeft: pdLeft} : {}
-        return <View style={[styles.liveBadge, paddingStyles]}>
-                <Image source={require('../../assets/img/design/live.png')} style={styles.logoLive} />
-            </View>
+class LiveBadge extends React.Component<LiveBadgeProps> {
+    render() {
+        const { pdLeft } = this.props;
+        const paddingStyles: React.CSSProperties = pdLeft !== undefined ? { paddingLeft: pdLeft } : {};
+
+        return (
+            <div style={{ ...styles.liveBadge, ...paddingStyles }}>
+                {/*<img src={liveImg} alt="LIVE" style={styles.logoLive} />*/}
+            </div>
+        );
     }
 }
 
-export { LiveBadge }
+export { LiveBadge };
 
-const styles = StyleSheet.create({
+const styles: Record<string, React.CSSProperties> = {
     liveBadge: {
         paddingLeft: 15,
+        display: "flex",
+        alignItems: "center",
     },
     logoLive: {
         width: 51,
         height: 21,
-        resizeMode: 'contain',
+        objectFit: "contain",
+        display: "block",
     },
-})
+};

@@ -1,45 +1,48 @@
-import React from 'react'
-import { StyleSheet, View } from 'react-native';
-import { Button, buttonItemProps } from '../Components/ButtonItem';
-import { Text } from '../Components/TextItem';
-import { XB } from '../../assets/styles/paddings';
-import { COLORS } from '../../assets/styles/colors';
+import React from "react";
+import { Button } from "../Components/ButtonItem";
+import { XB } from "../../assets/styles/paddings";
+import {TextItem} from "~/src/Views/Components/TextItem";
 
 type emptyMessageProps = {
     message?: string;
     submessage?: string;
-    button?: buttonItemProps;
-    style?: "list"
-}
+    button?: any;
+    style?: "list";
+};
+
 class EmptyMessageView extends React.Component {
-    props: emptyMessageProps
-    constructor(props: emptyMessageProps){
-        super(props)
-        this.props = props
+    props: emptyMessageProps;
+    constructor(props: emptyMessageProps) {
+        super(props);
+        this.props = props;
     }
-    render(){
-        const { message, submessage, button, style} = this.props
-        const styleBox = style ? styles[style] : {}
-        return <View style={[styles.container, styleBox]}>
-            {message && <Text style='pageHead'>{message}</Text>}
-            {submessage && <Text center>{submessage}</Text>}
-            {button && <Button {...button}/>}
-        </View>
+
+    render() {
+        const { message, submessage, button, style } = this.props;
+        const styleBox = style ? styles[style] : {};
+
+        return (
+            <div style={{ ...styles.container, ...styleBox }}>
+                {message && <TextItem style="pageHead">{message}</TextItem>}
+                {submessage && <TextItem center>{submessage}</TextItem>}
+                {button && <Button {...button} />}
+            </div>
+        );
     }
 }
 
-export { EmptyMessageView }
+export { EmptyMessageView };
 
-const styles = StyleSheet.create({
+const styles: Record<string, React.CSSProperties> = {
     container: {
-        // backgroundColor: COLORS.RIDE_SHINE,
-        paddingVertical: XB
+        paddingTop: XB,
+        paddingBottom: XB,
     },
     list: {
-        backgroundColor: "none",
-        // backgroundColor: "red",
+        backgroundColor: "transparent",
         minHeight: 100,
+        display: "flex",
         justifyContent: "center",
-
-    }
-})
+        alignItems: "center",
+    },
+};

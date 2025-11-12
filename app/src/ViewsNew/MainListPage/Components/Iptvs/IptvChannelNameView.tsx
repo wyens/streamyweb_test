@@ -1,84 +1,72 @@
+import React from "react";
 import { ViewItem } from "~/src/Base/ViewItem";
 import { IptvChannel } from "~/src/Controllers/Pages/HomeStack/IptvPage/IptvChannel";
-
-
+import { IptvHeaderRowView } from "./IptvHeaderRow";
+import { ICONS } from "~/src/Constants/icons";
 
 class IptvChannelNameView extends ViewItem {
-
     get controller(): IptvChannel{
-        return this.props.controller
+        return this.props.controller;
     }
 
-    render(){
-        const { title, icon, onPressItem, selected, epg, visible, favoriteStatus} = this.controller
-        if(!visible){
-            return null
-        }
-        return null
-        // console.log("icon",icon)
-        // return <View style={styles.container}>
-        //         <IptvHeaderRowView
-        //         type="channel"
-        //         isMainColor
-        //         centered
-        //         >
-        //             <FastImage
-        //                 source={{uri: icon}}
-        //                 style={styles.icon}
-        //                 resizeMode="contain"
-        //             />
-        //             {favoriteStatus && <Image source={ICONS.starDefault} style={styles.favorite}/>}
-        //         </IptvHeaderRowView>
-        // </View>
+    render() {
+        const { icon, visible, favoriteStatus } = this.controller;
+
+        if (!visible) return null;
+
+        return (
+            <div style={styles.container}>
+                <IptvHeaderRowView type="channel" isMainColor centered>
+                    <div style={styles.iconWrapper}>
+                        <img
+                            src={icon}
+                            alt="channel"
+                            style={styles.icon}
+                            onError={(e) => {
+                                e.currentTarget.style.opacity = "0.4";
+                            }}
+                        />
+                        {favoriteStatus && (
+                            <img
+                                src={ICONS.starDefault}
+                                alt="favorite"
+                                style={styles.favorite}
+                            />
+                        )}
+                    </div>
+                </IptvHeaderRowView>
+            </div>
+        );
     }
 }
 
-export { IptvChannelNameView }
+export { IptvChannelNameView };
 
-// const styles = StyleSheet.create({
-//     container: {
-//         flexDirection: "row",
-//         // alignItems: "center"
-//         marginBottom: DISTANCE_BETWEEN_ITEMS,
-//         height: Dimensions.get("screen").height*.2
-//     },
-//     icon: {
-//         height: 70,
-//         width: 70,
-//         resizeMode: "contain",
-//         // tintColor: '#D9D9D9',
-//     },
-//     scroll: {
-//         // gap: 5
-//     },
-//     previewChannel: {
-//         width: 160,
-//         height: 90,
-//         resizeMode: "contain"
-//     },
-//     mainepgContainer: {
-//         flexDirection: "row",
-//         alignItems: "center"
-//     },
-//     mainepgTexts: {
-//
-//     },
-//     endsSoon: {
-//         color: "#A29F9F",
-//         fontSize: 12
-//     },
-//     secondaryepg: {
-//         color: "#A29F9F",
-//         fontWeight: 600
-//     },
-//     mainepgTitle: {
-//         fontWeight: 600
-//     },
-//     favorite: {
-//         width: 15,
-//         height: 15,
-//         position: "absolute",
-//         left: 5,
-//         top: 5
-//     }
-// })
+const styles: Record<string, React.CSSProperties> = {
+    container: {
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+        marginBottom: 3,
+        height: "20vh",
+    },
+    iconWrapper: {
+        position: "relative",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+    },
+    icon: {
+        width: 70,
+        height: 70,
+        objectFit: "contain",
+        filter: "brightness(0.95)",
+    },
+    favorite: {
+        width: 15,
+        height: 15,
+        position: "absolute",
+        left: 5,
+        top: 5,
+    },
+};

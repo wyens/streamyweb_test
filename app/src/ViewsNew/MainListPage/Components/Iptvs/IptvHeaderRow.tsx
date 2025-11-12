@@ -101,6 +101,7 @@ const styles: Record<string, React.CSSProperties> = {
 const stylesByType: Record<NonNullable<iptvHeaderRowProps["type"]>, React.CSSProperties> = {
     channel: {
         minWidth: "10vw",
+        height:'100%'
     },
     mainepg: {
         marginLeft: DISTANCE_BETWEEN_ITEMS,

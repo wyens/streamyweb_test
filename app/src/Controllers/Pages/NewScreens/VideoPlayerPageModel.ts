@@ -12,6 +12,7 @@ class VideoPlayerPageModel extends Model {
     this._bPlayer = new BPlayer();
   }
   public init = () => {
+      console.log('this._initialChannel', this._initialChannel)
     if (this._initialChannel === null) {
       // appNavigator().goBack();
       return;
