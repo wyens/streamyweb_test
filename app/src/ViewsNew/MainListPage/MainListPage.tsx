@@ -10,10 +10,10 @@ class MainListPage extends ViewItem {
   }
   componentDidMount(): void {
     this.controller.init();
-
-    setTimeout(() => {
-        appNavigator().goToVideoPlayerPage({})
-    }, 3000)
+    //
+    // setTimeout(() => {
+    //     appNavigator().goToVideoPlayerPage({})
+    // }, 3000)
   }
 
   componentWillUnmount(): void {

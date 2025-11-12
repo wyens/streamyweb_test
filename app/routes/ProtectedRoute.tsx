@@ -1,4 +1,3 @@
-// ProtectedRoute.tsx
 import { Navigate, Outlet, useLocation } from "react-router";
 import { controllers } from "~/src/Controllers/Controllers";
 

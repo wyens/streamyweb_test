@@ -29,9 +29,9 @@ class LoginMainModel extends Model {
       this._code = response.data.code;
       this.state = StateLogin.code;
     }
-      setTimeout(() => {
-          appNavigator().goToHomePage({});
-      }, 5000)
+      // setTimeout(() => {
+      //     appNavigator().goToHomePage({});
+      // }, 5000)
   };
 
   public blur = async () => {

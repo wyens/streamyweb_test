@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { ViewItem } from '../../Base/ViewItem';
 import { VideoPlayerPageModel } from '../../Controllers/Pages/NewScreens/VideoPlayerPageModel';
 
@@ -20,11 +19,11 @@ class VideoPlayerPage extends ViewItem {
     return (
         <div className={'screen_container'}>
             VIDEO SCREEN
-        {/*<BPlayerView ref={this.controller.bPlayer.set} controller={this.controller.bPlayer} />*/}
-      </div>
+            {/*<BPlayerView ref={this.controller.bPlayer.set} controller={this.controller.bPlayer} />*/}
+        </div>
     );
   }
 }
 
-export { VideoPlayerPage };
+export {VideoPlayerPage};
 
