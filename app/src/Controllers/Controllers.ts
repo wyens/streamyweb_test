@@ -2,6 +2,7 @@
 import { HomeStackModel } from './Stacks/HomeStackModel';
 import {AuthController} from "~/src/Controllers/AuthController";
 import  {AbortControl} from "~/src/Controllers/AbortControl";
+import  {LanguageController} from "~/src/Controllers/LanguageController";
 
 
 class ControllersImpl {
@@ -15,7 +16,7 @@ class ControllersImpl {
   // private readonly _modals: Modals;
   // private readonly _permission: PermissionController;
   // private readonly _responseLoader: ResponseLoader;
-  // private readonly _language: LanguageController;
+  private readonly _language: LanguageController;
   // private readonly _simplyAuth: SimplyAuth;
   // private readonly _updateModule: UpdateModule;
   // private readonly _remoteControls: RemoteControls;
@@ -84,6 +85,9 @@ class ControllersImpl {
 
     get main() {
         return this._home ??= new HomeStackModel();
+    }
+    get language() {
+        return this._language ??= new LanguageController();
     }
 
   // get simplyAuth() {

@@ -1,10 +1,6 @@
 import { ViewItem } from '../../Base/ViewItem';
 import { BPlayer } from '../../Models/BPlayer/BPlayer';
-import { BStateView } from './BStateView';
-import { BVideoView } from './BVideoView';
-import { StyleSheet, View } from 'react-native';
 import { BFullScreenView } from './BFullScreenView';
-import { ViewControlsVideo } from '../ViewControlsVideo/ViewControlsVideo.tsx';
 import React from 'react';
 
 class BPlayerView extends ViewItem {
@@ -14,23 +10,23 @@ class BPlayerView extends ViewItem {
   render() {
     const { video, state, videoControls, bFullScreen, debug } = this.controller;
     return (
-      <View style={styles.container}>
+      <div style={styles.container}>
         {/* <BVidDebugView ref={debug.set} controller={debug}/> */}
         <BFullScreenView ref={bFullScreen.set} controller={bFullScreen}>
-          <View style={styles.box}>
-            <BStateView ref={state.set} controller={state} />
-            <ViewControlsVideo controller={videoControls} ref={videoControls.set} />
-            <BVideoView ref={video.set} controller={video} />
-          </View>
+          {/*<div style={styles.box}>*/}
+          {/*  <BStateView ref={state.set} controller={state} />*/}
+          {/*  <ViewControlsVideo controller={videoControls} ref={videoControls.set} />*/}
+          {/*  <BVideoView ref={video.set} controller={video} />*/}
+          {/*</div>*/}
         </BFullScreenView>
-      </View>
+      </div>
     );
   }
 }
 
 export { BPlayerView };
 
-const styles = StyleSheet.create({
+const styles = ({
   container: {
     zIndex: 1000,
     flex: 1,

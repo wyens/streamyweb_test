@@ -1,7 +1,7 @@
 import { Model } from "../Base/Model";
 import { loadData, UserDataProvider } from "../Base/UserDataProvider";
-import { langs } from "../Constants/AppSettings";
-import { changeLanguageBody } from "../DataTypes/BaseResponse";
+import type {langs} from "../Constants/AppSettings";
+import type {changeLanguageBody} from "../DataTypes/BaseResponse";
 import { coreupdate } from "../Helpers/actions";
 import { UPDATE } from "../Helpers/constants";
 import { controllers } from "./Controllers";

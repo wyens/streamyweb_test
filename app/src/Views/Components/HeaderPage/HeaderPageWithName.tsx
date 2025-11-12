@@ -1,104 +1,134 @@
-import React from 'react';
-import { StyleSheet, Image, Pressable, TVFocusGuideView, View } from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
-import { BASE_ICONS } from '../../../Constants/icons.ts';
-import { HEADER_HEIGHT } from './HeaderPage.tsx';
-import { UserShortNameView } from '../../Design/UserShortNameView.tsx';
-import { BORDERCOLOR } from '../../../assets/styles/colors.ts';
-import { ViewLogoutApp } from '../../ViewControlsVideo/ViewLogoutApp.tsx';
-import { ControllerLogout } from '../../../Models/ControllerControlsVideo/ControllerLogout.ts';
-import { Text } from '../TextItem.tsx';
-import { ViewItem, viewItemProps } from '../../../Base/ViewItem.tsx';
+import React from "react";
+import type { ControllerLogout } from "~/src/Models/ControllerControlsVideo/ControllerLogout";
+import { ViewItem, type viewItemProps } from "~/src/Base/ViewItem";
+import { BASE_ICONS } from "~/src/Constants/icons";
+import { BORDERCOLOR } from "~/src/assets/styles/colors";
+import { UserShortNameView } from "~/src/Views/Design/UserShortNameView";
+import { TextItem } from "~/src/Views/Components/TextItem";
+import { HEADER_HEIGHT } from "~/src/Views/Components/HeaderPage/HeaderPage";
 
 export type HeaderPageProps = viewItemProps & {};
 
 export class HeaderPageWithName extends ViewItem {
-  props: HeaderPageProps;
+    props: HeaderPageProps;
 
-  state = {
-    focused: false,
-  };
-  constructor(props: HeaderPageProps) {
-    super(props);
-    this.props = props;
-  }
+    state = {
+        focused: false,
+        hovered: false,
+    };
 
-  get controller(): ControllerLogout{
-    return this.props.controller
-  }
+    constructor(props: HeaderPageProps) {
+        super(props);
+        this.props = props;
+    }
 
-  public onLogout = async () => {
-    this.controller.showControllers();
-  };
-  public get controllerLogout() {
-    return this.controller;
-  }
+    get controller(): ControllerLogout {
+        return this.props.controller;
+    }
 
-  public setFocused = (value: boolean) => {
-    this.setState({ focused: value });
-  };
+    public onLogout = async () => {
+        this.controller.showControllers();
+    };
 
-  render() {
-    const { focused } = this.state;
+    public get controllerLogout() {
+        return this.controller;
+    }
 
-    return (
-      <>
-        <View style={styles.container}>
-          <LinearGradient colors={['#1C1E2C', '#17181E']} style={StyleSheet.absoluteFill} />
+    public setFocused = (value: boolean) => {
+        this.setState({ focused: value });
+    };
 
-          <Image source={BASE_ICONS.sttechlogo} style={styles.sttechlogo} />
+    public setHovered = (value: boolean) => {
+        this.setState({ hovered: value });
+    };
 
-          <Pressable
-            onPress={this.onLogout}
-            focusable={true}
-            isTVSelectable={true}
-            hasTVPreferredFocus={true}
-            onFocus={() => this.setFocused(true)}
-            onBlur={() => this.setFocused(false)}
-            style={[styles.userName, focused && styles.userNameFocused]}
-          >
-            <Text customStyle={styles.shortName}>
-              <UserShortNameView />
-            </Text>
-          </Pressable>
-        </View>
-        {/* <ViewLogoutApp ref={this._controllerLogout.set} controller={this._controllerLogout} /> */}
-      </>
-    );
-  }
+    render() {
+        const { focused, hovered } = this.state;
+
+        return (
+            <>
+                <div style={styles.container}>
+                    <div style={styles.gradientFill} />
+                    <img
+                        src={BASE_ICONS.sttechlogo}
+                        alt="sttech"
+                        style={styles.sttechlogo}
+                    />
+
+                    <button
+                        type="button"
+                        onClick={this.onLogout}
+                        onFocus={() => this.setFocused(true)}
+                        onBlur={() => this.setFocused(false)}
+                        onMouseEnter={() => this.setHovered(true)}
+                        onMouseLeave={() => this.setHovered(false)}
+                        tabIndex={0}
+                        style={{
+                            ...styles.userName,
+                            ...(focused || hovered ? styles.userNameActive : {}),
+                        }}
+                    >
+                        <TextItem customStyle={styles.shortName}>
+                            <UserShortNameView />
+                        </TextItem>
+                    </button>
+                </div>
+            </>
+        );
+    }
 }
 
-export const styles = StyleSheet.create({
-  container: {
-    // height: HEADER_HEIGHT,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingHorizontal: 10,
-    paddingVertical: 10
-    // marginBottom: 10,
-    // backgroundColor: "red",
-  },
-  sttechlogo: {
-    width: 43,
-    height: 13,
-    resizeMode: 'contain',
-  },
-  userName: {
-    width: 26,
-    height: 26,
-    borderWidth: 1.5,
-    borderColor: BORDERCOLOR,
-    borderStyle: 'solid',
-    borderRadius: 18,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  userNameFocused: {
-    borderColor: '#00C2FF',
-    transform: [{ scale: 1.1 }],
-  },
-  shortName: {
-    fontSize: 10
-  }
-});
+const styles: Record<string, React.CSSProperties> = {
+    container: {
+        position: "relative",
+        display: "flex",
+        flexDirection: "row" as const,
+        justifyContent: "space-between",
+        alignItems: "center",
+        padding: "10px 10px",
+        height: HEADER_HEIGHT,
+    },
+
+    gradientFill: {
+        position: "absolute",
+        inset: 0,
+        backgroundImage: "linear-gradient(180deg, #1C1E2C 0%, #17181E 100%)",
+        pointerEvents: "none",
+        zIndex: 0,
+    },
+
+    sttechlogo: {
+        width: 83,
+        height: 28,
+        objectFit: "contain",
+        zIndex: 1,
+        paddingLeft: 10
+    },
+
+    userName: {
+        width: 35,
+        height: 35,
+        borderWidth: 1.5,
+        borderStyle: "solid",
+        borderColor: BORDERCOLOR,
+        borderRadius: 18,
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        background: "transparent",
+        cursor: "pointer",
+        outline: "none",
+        zIndex: 1,
+        transition: "transform 150ms ease, border-color 150ms ease",
+    },
+
+    userNameActive: {
+        borderColor: "#00C2FF",
+        transform: "scale(1.1)",
+    },
+
+    shortName: {
+        fontSize: 14,
+        lineHeight: "10px",
+    },
+};

@@ -1,6 +1,7 @@
 import React from 'react';
 import { ViewItem } from '../../Base/ViewItem';
 import { VideoPlayerPageModel } from '../../Controllers/Pages/NewScreens/VideoPlayerPageModel';
+import {BPlayerView} from "~/src/Views/BPlayerView/BPlayerView";
 
 
 class VideoPlayerPage extends ViewItem {
@@ -18,8 +19,7 @@ class VideoPlayerPage extends ViewItem {
   render() {
     return (
         <div className={'screen_container'}>
-            VIDEO SCREEN
-            {/*<BPlayerView ref={this.controller.bPlayer.set} controller={this.controller.bPlayer} />*/}
+            <BPlayerView ref={this.controller.bPlayer.set} controller={this.controller.bPlayer} />
         </div>
     );
   }

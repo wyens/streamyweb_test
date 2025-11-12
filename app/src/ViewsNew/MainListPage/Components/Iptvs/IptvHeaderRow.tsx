@@ -1,5 +1,4 @@
 import React from "react";
-import { Text } from "~/src/Views/Components/TextItem";
 import { PressableFocusView } from "./PressableFocusView";
 import { FONTS } from "~/src/assets/styles/fonts";
 

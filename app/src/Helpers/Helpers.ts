@@ -1,3 +1,5 @@
+import React from "react";
+
 export const capitalize = (string: any) => {
   if (!string) {
     return '';
@@ -193,4 +195,32 @@ export const replaceES5 = (s: string, e: string, r: string) => {
 
 export const stringParser = (strnum: string|number): number => {
   return typeof strnum === "string" ? parseInt(strnum) : strnum
+}
+
+export function makeClampStyle(
+    numberOfLines?: number,
+    mode: 'head' | 'middle' | 'tail' | 'clip' = 'tail'
+): React.CSSProperties {
+    if (!numberOfLines || numberOfLines <= 0) return {};
+    if (numberOfLines === 1) {
+        if (mode === 'clip') {
+            return { whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'clip' };
+        }
+        return { whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' };
+    }
+    return {
+        display: '-webkit-box',
+        WebkitLineClamp: String(numberOfLines) as unknown as number,
+        WebkitBoxOrient: 'vertical' as any,
+        overflow: 'hidden',
+    };
+}
+
+export function mergeStyles(
+    ...parts: Array<false | null | undefined | React.CSSProperties>
+): React.CSSProperties {
+    return parts.reduce<React.CSSProperties>((acc, p) => {
+        if (p) Object.assign(acc, p);
+        return acc;
+    }, {});
 }

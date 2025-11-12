@@ -1,8 +1,6 @@
-import React from 'react';
-import { Text } from '../Components/TextItem';
-import { UpdateComponent } from '../../Base/UpdateComponent';
-import { controllers } from '../../Controllers/Controllers';
-import { UPDATE } from '../../Helpers/constants';
+import {UpdateComponent} from '../../Base/UpdateComponent';
+import {controllers} from '../../Controllers/Controllers';
+import {UPDATE} from '../../Helpers/constants';
 
 type UserShortNameViewProps = {};
 
@@ -40,9 +38,7 @@ class UserShortNameView extends UpdateComponent {
 
   render() {
     const fullName = controllers().auth.userInfo?.user.full_name || '';
-    const initials = getInitialsFromFullName(fullName);
-
-    return initials;
+      return getInitialsFromFullName(fullName);
   }
 }
 

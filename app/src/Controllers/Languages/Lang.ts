@@ -1,9 +1,5 @@
-// import { Model } from "../../Base/Model";
-// import { langRowType, langs } from "../../DataTypes/languageTypes"
-// import { controllers } from "../Controller";
-
 import { Model } from "../../Base/Model";
-import { langRowType, langs } from "../../Constants/AppSettings";
+import type {langRowType, langs} from "../../Constants/AppSettings";
 import { controllers } from "../Controllers";
 
 
