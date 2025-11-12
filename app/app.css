@@ -19,6 +19,18 @@ body {
     background-color: #17181E;
     min-height: 100vh;
 }
+.scroll-x {
+    display: flex;              /* елементи в ряд */
+    overflow-x: auto;           /* вмикаємо горизонтальний скрол */
+    overflow-y: hidden;
+    white-space: nowrap;        /* якщо діти inline/inline-block */
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;      /* Firefox */
+    -ms-overflow-style: none;   /* IE/старий Edge */
+}
+.scroll-x::-webkit-scrollbar {
+    width: 0; height: 0;        /* Chrome/Safari */
+}
 @keyframes spin {
     to {
         transform: rotate(360deg);

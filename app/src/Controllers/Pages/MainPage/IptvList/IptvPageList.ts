@@ -3,7 +3,7 @@ import  {IptvList} from "~/src/Controllers/Pages/HomeStack/IptvPage/IptvList";
 import  {IptvHeader} from "~/src/Controllers/Pages/MainPage/IptvList/IptvHeader";
 import  {EpgModel} from "~/src/Controllers/Pages/HomeStack/IptvPage/EpgModel";
 import  {Slots} from "~/src/Controllers/Pages/HomeStack/IptvPage/Slots";
-import {LISTSIZE} from "~/src/Constants/settings";
+import {LISTSIZE, PRELOAD_ITEMS_FROM_COUNT} from "~/src/Constants/settings";
 import {IptvChannel} from "~/src/Controllers/Pages/HomeStack/IptvPage/IptvChannel";
 import {DISTANCE_BETWEEN_ITEMS} from "~/src/ViewsNew/MainListPage/Components/Iptvs/IptvHeaderRow";
 
@@ -139,7 +139,7 @@ class IptvPageList extends Model {
 
   onHorizontalScroll = (pos: number) => {
     this._iptvHeader.scrollHorizontally(pos)
-    const oneItemWidth = Dimensions.get("screen").width*.2+DISTANCE_BETWEEN_ITEMS
+    const oneItemWidth = window.innerWidth *.2+DISTANCE_BETWEEN_ITEMS
     const currentMax = this._epgCountToLoad - PRELOAD_ITEMS_FROM_COUNT
     if(pos>currentMax*oneItemWidth){
       this._epgCountToLoad += 5;

@@ -1,81 +1,113 @@
 import React from "react";
-import {appNavigator} from "~/src/Controllers/Navigation";
+import { appNavigator } from "~/src/Controllers/Navigation";
 
 type pressableState = {
     focused: boolean;
-}
+};
 
 type pressableProps = {
     children: any;
-    style?: any;
-    channel?:any;
+    style?: React.CSSProperties;
+    channel?: any;
     autoFocus?: boolean;
     focused?: boolean;
-    onFocusAddition?:any;
-    onBlurAddition?:any;
-    onPress?: ()=>any
-    setFocusItem?: (ref:any)=>void
-}
+    onFocusAddition?: () => void;
+    onBlurAddition?: () => void;
+    onPress?: () => any;
+    setFocusItem?: (ref: any) => void;
+};
 
-class PressableFocusView extends React.Component<pressableProps> {
+class PressableFocusView extends React.Component<pressableProps, pressableState> {
+    private btnRef = React.createRef<HTMLButtonElement>();
 
     state: pressableState = {
-        focused: this.props.focused || false
+        focused: this.props.focused || false,
+    };
+
+    componentDidMount(): void {
+        if (this.props.autoFocus || this.props.focused) {
+            this.btnRef.current?.focus();
+        }
+        this.props.setFocusItem?.(this.btnRef);
+    }
+
+    componentDidUpdate(prevProps: pressableProps): void {
+        if (prevProps.focused !== this.props.focused && typeof this.props.focused === "boolean") {
+            this.setState({ focused: this.props.focused });
+            if (this.props.focused) this.btnRef.current?.focus();
+        }
     }
 
     setFocused = (bool: boolean) => {
-        this.setState({focused: bool})
-    }
+        this.setState({ focused: bool });
+    };
 
     onFocus = () => {
-        if(this.props.onFocusAddition){
-            this.props.onFocusAddition()
-        }
-        this.setFocused(true)
-    }
+        this.props.onFocusAddition?.();
+        this.setFocused(true);
+    };
 
     onBlur = () => {
-        if(this.props.onBlurAddition){
-            this.props.onBlurAddition()
-        }
-        this.setFocused(false)
-    }
+        this.props.onBlurAddition?.();
+        this.setFocused(false);
+    };
 
-    pressGoToChannel = () =>{ 
-        appNavigator().goToVideoPlayerPage(this.props.channel)
-    }
-    render(){
-        const { focused } = this.state
-        const { children, style, onPress, setFocusItem } = this.props
-        const pressAction = onPress || this.pressGoToChannel
-        return null;
-        // return <Pressable
-        //             ref={setFocusItem}
-        //             onPress={pressAction}
-        //             focusable={true}
-        //             // @ts-ignore
-        //             isTVSelectable={true}
-        //             hasTVPreferredFocus={focused || this.props.focused}
-        //             onFocus={this.onFocus}
-        //             onBlur={this.onBlur}
-        //             style={[style, styles.oneItem, focused && styles.oneItemSelected]}
-        //             // @ts-ignore
-        //             // autoFocus={false}
-        //             >
-        //         {children}
-        //     </Pressable>
+    pressGoToChannel = () => {
+        appNavigator().goToVideoPlayerPage(this.props.channel);
+    };
+
+    onKeyDown: React.KeyboardEventHandler<HTMLButtonElement> = (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            (this.props.onPress || this.pressGoToChannel)();
+        }
+    };
+
+    render() {
+        const { focused } = this.state;
+        const { children, style, onPress } = this.props;
+        const pressAction = onPress || this.pressGoToChannel;
+
+        const mergedStyle: React.CSSProperties = {
+            ...styles.oneItem,
+            ...(style || {}),
+            ...(focused ? styles.oneItemSelected : {}),
+        };
+
+        return (
+            <button
+                ref={this.btnRef}
+                type="button"
+                onClick={pressAction}
+                onFocus={this.onFocus}
+                onBlur={this.onBlur}
+                onKeyDown={this.onKeyDown}
+                tabIndex={0}
+                style={mergedStyle}
+            >
+                {children}
+            </button>
+        );
     }
 }
 
-export { PressableFocusView }
+export { PressableFocusView };
 
-// const styles = StyleSheet.create({
-//     oneItem: {
-//         borderWidth: 2,
-//         borderColor: 'rgba(0,0,0,0)',
-//     },
-//     oneItemSelected: {
-//         borderWidth: 2,
-//         borderColor: '#fff',
-//     },
-// })
+const styles: Record<string, React.CSSProperties> = {
+    oneItem: {
+        borderWidth: 2,
+        borderStyle: "solid",
+        borderColor: "rgba(0,0,0,0)",
+        background: "transparent",
+        padding: 0,
+        margin: 0,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        cursor: "pointer",
+        outline: "none",
+    },
+    oneItemSelected: {
+        borderColor: "#fff",
+    },
+};

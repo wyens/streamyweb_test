@@ -33,20 +33,6 @@ class MainCategoriesView extends ViewItem {
   render() {
     const { items, categoryLine, scrollFocused, scrollBlured, trapFocusDown } = this.controller;
     return (
-      // <TVFocusGuideView
-      //   style={styles.container}
-      //   onFocus={scrollFocused}
-      //   onBlur={scrollBlured}
-      //   autoFocus
-      //   trapFocusDown={trapFocusDown}
-      //   hasTVPreferredFocus={true}
-      // >
-      //   <ScrollView horizontal style={styles.itemsContainer} showsHorizontalScrollIndicator={false}>
-      //     {items && items.map((oi, i) => <OneCategoryView key={`${oi.id}_${oi.keyId}`} ref={oi.set} controller={oi} />)}
-      //     <CategoryLineView ref={categoryLine.set} controller={categoryLine} />
-      //   </ScrollView>
-      // </TVFocusGuideView>
-
         <div
             style={styles.container}
             onFocus={scrollFocused}

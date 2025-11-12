@@ -3,6 +3,7 @@ import { ViewItem } from '../../Base/ViewItem';
 import { MainListPageModel } from '../../Controllers/Pages/NewScreens/MainListPageModel';
 import {HeaderPageWithName} from "~/src/Views/Components/HeaderPage/HeaderPageWithName";
 import {MainCategoriesView} from "~/src/ViewsNew/MainListPage/Components/Categories/MainCategories";
+import {IptvListPageView} from "~/src/ViewsNew/MainListPage/Components/Iptvs/IptvListPageView";
 
 class MainListPage extends ViewItem {
   private focusUnsub: any;
@@ -24,7 +25,7 @@ class MainListPage extends ViewItem {
         <div className={'screen_container'}>
           <HeaderPageWithName ref={headerRef} controller={controllerLogout} />
           <MainCategoriesView ref={categories.set} controller={categories} />
-        {/*<IptvListPageView ref={iptvPage.set} controller={iptvPage} />*/}
+          <IptvListPageView ref={iptvPage.set} controller={iptvPage} />
       </div>
     );
   }
