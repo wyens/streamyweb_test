@@ -1,5 +1,6 @@
 import { ScrollController } from '../ScrollController';
 import { ScrollRefresh } from './ScrollRefresh';
+import React from "react";
 
 type listScrollModel = {
   refresh: (callback: () => void) => Promise<any>;
@@ -48,7 +49,6 @@ class ListScroll extends ScrollController {
         this._innerRef = ref;
     };
     syncScrollFromHeader = (scrollLeft: number) => {
-        console.log('onHeaderScroll event',this._innerRef.scrollLeft, scrollLeft )
 
         if (this._innerRef && this._innerRef.scrollLeft !== scrollLeft) {
             this._innerRef.scrollLeft = scrollLeft;

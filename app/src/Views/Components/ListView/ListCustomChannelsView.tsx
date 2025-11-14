@@ -47,12 +47,12 @@ class ListCustomChannelsView extends ViewItem {
         this.controller.setInnerRef(ref)
     };
 
-    handleInnerWheel = (e) => {
-        if (!this.controller.innerRef) return;
-        if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
-            this.controller.innerRef.scrollLeft += e.deltaY;
-        }
-    };
+    // handleInnerWheel = (e) => {
+    //     if (!this.controller.innerRef) return;
+    //     if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+    //         this.controller.innerRef.scrollLeft += e.deltaY;
+    //     }
+    // };
 
     render() {
         const { setScrollRef, scrollRefresh, onScroll, onScrollHorizontal, onLayout, horizontal, pagingEnabled } = this.controller;
