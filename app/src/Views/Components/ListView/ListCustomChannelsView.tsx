@@ -62,6 +62,7 @@ class ListCustomChannelsView extends ViewItem {
 
         return (
             <div
+                className={'scroll-x'}
                 style={styles.scroll}
                 ref={this.setSaveScrollRef}
                 tabIndex={this.props.focusable ? 0 : -1}
@@ -70,10 +71,8 @@ class ListCustomChannelsView extends ViewItem {
             >
                 <div style={styles.row}>
                     <div>{LeftComponent}</div>
-
                     <div
                         ref={this.setInnerRef}
-                        style={{ ...styles.innerHorizontal, ...isFull, ...contentContainerStyle }}
                         onScroll={onScrollHorizontal}
                         onWheel={this.handleInnerWheel}
                     >
@@ -92,6 +91,7 @@ const styles: Record<string, React.CSSProperties> = {
         display: "flex",
         flex: "1 1 auto",
         overflow: "auto",
+        height: '100%',
         minHeight: 0,
     },
     w100: {

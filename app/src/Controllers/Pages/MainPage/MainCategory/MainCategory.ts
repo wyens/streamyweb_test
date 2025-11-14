@@ -69,11 +69,14 @@ class MainCategory extends Model {
         })
     }
 
-    onFocus = (layout:any) => {
-        console.log("ON FOCUS LAYOUT", layout)
+    public initCategoryLine = (layout:any) => {
         this._categoryLine.setLayout(layout)
         this._categoryLine.setVisible(true)
         this._categoryLine.updateMe()
+    }
+
+    onFocus = (layout:any) => {
+        this.initCategoryLine(layout);
         this.onCategoryChanged()
     }
 

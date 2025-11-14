@@ -99,18 +99,38 @@ class ScrollController extends Model {
         this._pos = y
         this._scrollHeight = height
     }
-
     onScroll = (event: any) => {
-        const {layoutMeasurement, contentOffset, contentSize} = event.nativeEvent
-        // const {y, height} = event.nativeEvent.contentOffset
-        this._pos = this._model.horizontal ? contentOffset.x : contentOffset.y
-        this._scrollHeight = this._model.horizontal ? layoutMeasurement.width :layoutMeasurement.height
-        this._contentHeight = this._model.horizontal ? contentSize.width :  contentSize.height
-        if(this._model.onScroll){
-            this._model.onScroll(event)
+        const target = event?.currentTarget || event?.target || this._scrollRef;
+
+        if (!target) return;
+
+        if (this._model.horizontal) {
+            this._pos = target.scrollLeft ?? 0;
+            this._scrollHeight = target.clientWidth ?? 0;
+            this._contentHeight = target.scrollWidth ?? 0;
+        } else {
+            this._pos = target.scrollTop ?? 0;
+            this._scrollHeight = target.clientHeight ?? 0;
+            this._contentHeight = target.scrollHeight ?? 0;
         }
-        this.makeAllActions(this._pos, event)
-    }
+
+        if (this._model.onScroll) {
+            this._model.onScroll(event);
+        }
+
+        this.makeAllActions(this._pos, event);
+    };
+    // onScroll = (event: any) => {
+    //     const {layoutMeasurement, contentOffset, contentSize} = event.nativeEvent
+    //     // const {y, height} = event.nativeEvent.contentOffset
+    //     this._pos = this._model.horizontal ? contentOffset.x : contentOffset.y
+    //     this._scrollHeight = this._model.horizontal ? layoutMeasurement.width :layoutMeasurement.height
+    //     this._contentHeight = this._model.horizontal ? contentSize.width :  contentSize.height
+    //     if(this._model.onScroll){
+    //         this._model.onScroll(event)
+    //     }
+    //     this.makeAllActions(this._pos, event)
+    // }
 
     makeAllActions = (pos: any, event: any) => {
         this._customListener.forEach(e=>{

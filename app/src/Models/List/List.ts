@@ -278,22 +278,40 @@ class List extends Model {
     this.needToUpdate();
   };
 
-  onScroll = (event: any) => {
-    try {
-      const { pos, scrollHeight, contentHeight } = this.scroll;
-      this.onScrollVerticalAction(pos)
-      if (this._doNotTrackTheScroll || this._endLoading) {
-        return;
-      }
-      if (pos + scrollHeight > contentHeight - SCROLLUPDATELENGTH) {
-        this._doNotTrackTheScroll = true;
-        this.nextPage();
-      }
-      // if(this._scroll.pos+this.scroll.scrollHeight
-    } catch (e) {
-      console.log('No event');
-    }
-  };
+    onScroll = (event: any) => {
+        try {
+            const { pos, scrollHeight, contentHeight } = this.scroll;
+            this.onScrollVerticalAction(pos);
+
+            if (this._doNotTrackTheScroll || this._endLoading) {
+                return;
+            }
+
+            if (pos + scrollHeight > contentHeight - SCROLLUPDATELENGTH) {
+                this._doNotTrackTheScroll = true;
+                this.nextPage();
+            }
+        } catch (e) {
+            console.log('No event');
+        }
+    };
+
+  // onScroll = (event: any) => {
+  //   try {
+  //     const { pos, scrollHeight, contentHeight } = this.scroll;
+  //     this.onScrollVerticalAction(pos)
+  //     if (this._doNotTrackTheScroll || this._endLoading) {
+  //       return;
+  //     }
+  //     if (pos + scrollHeight > contentHeight - SCROLLUPDATELENGTH) {
+  //       this._doNotTrackTheScroll = true;
+  //       this.nextPage();
+  //     }
+  //     // if(this._scroll.pos+this.scroll.scrollHeight
+  //   } catch (e) {
+  //     console.log('No event');
+  //   }
+  // };
 
   onScrollVerticalAction = (pos:number) =>{ 
     if(this._model.onScrollVertical){

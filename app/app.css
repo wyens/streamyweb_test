@@ -12,12 +12,19 @@ body {
   @media (prefers-color-scheme: dark) {
     color-scheme: dark;
   }
+    max-width: 1440px;
+    margin: 0 auto;
+}
+.h100 {
+    height: 100%;
 }
 .screen_container {
     display: flex;
     flex-direction: column;
     background-color: #17181E;
     min-height: 100vh;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 .scroll-while {
     display: flex;

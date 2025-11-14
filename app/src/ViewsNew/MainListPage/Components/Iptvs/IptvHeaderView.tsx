@@ -2,7 +2,7 @@ import React from 'react';
 import { DISTANCE_BETWEEN_ITEMS, IptvHeaderRowView } from './IptvHeaderRow';
 import {ViewItem} from "~/src/Base/ViewItem";
 import type {IptvHeader} from "~/src/Controllers/Pages/MainPage/IptvList/IptvHeader";
-import {HEADER_HEIGHT} from "~/src/Views/Components/HeaderPage/HeaderPage";
+import {mainBG} from "~/src/assets/styles/colors";
 
 class IptvHeaderView extends ViewItem {
     get controller(): IptvHeader {
@@ -39,14 +39,15 @@ export { IptvHeaderView };
 
 const styles: Record<string, React.CSSProperties> = {
     container: {
-        paddingTop: 10,
+        paddingTop: 5,
         paddingBottom: DISTANCE_BETWEEN_ITEMS,
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'stretch',
         position: "sticky",
-        top: HEADER_HEIGHT,
-        zIndex: 1000,
+        top: 99,
+        zIndex: 1010,
+        backgroundColor: mainBG,
     },
     scroll: {
         display: 'flex',

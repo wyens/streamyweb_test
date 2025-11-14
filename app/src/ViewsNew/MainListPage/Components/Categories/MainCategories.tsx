@@ -22,7 +22,6 @@ class MainCategoriesView extends ViewItem {
                     e.stopPropagation();
                 }
             } else if (this.controller.trapFocusDown) {
-                // якщо це флаг boolean
                 e.preventDefault();
                 e.stopPropagation();
             }
@@ -46,7 +45,7 @@ class MainCategoriesView extends ViewItem {
                      }
                  }}>
                 {items && items.map((oi) => (
-                    <OneCategoryView key={`${oi.id}_${oi.keyId}`} ref={oi.set} controller={oi} />
+                    <OneCategoryView  key={`${oi.id}_${oi.keyId}`} ref={oi.set} controller={oi} />
                 ))}
                 <CategoryLineView ref={categoryLine.set} controller={categoryLine} />
             </div>
@@ -60,6 +59,7 @@ export { MainCategoriesView };
 const styles: Record<string, React.CSSProperties> = {
     container: {
         outline: "none",
+        width: "100%",
     },
     itemsContainer: {
         position: "relative",

@@ -8,15 +8,15 @@ export type oneCategoryType = {
     id: string;
     genre: string;
     isFocused?: boolean;
+    initCategoryLine?: (layoutLeft: any)=>void;
     onFocus?: (layoutLeft: any)=>void;
-    onSelect?: (item:OneCategory) =>void 
+    onSelect?: (item:OneCategory) =>void
     onBlur?: ()=>void;
     controlCategory: MainCategory;
 }
 
 class OneCategory extends Model {
     private _data: oneCategoryType
-    private _focused: boolean = false;
     private _layout: any = null;
     private _selected: boolean = false;
     private _keyId:any = "";
@@ -101,7 +101,7 @@ class OneCategory extends Model {
         // const { x, y, width, height } = event.nativeEvent.layout;
         // console.error("SET LAYOUT ON RENDER", event)
         if(event.nativeEvent.layout){
-            this._layout = event.nativeEvent.layout
+            this._layout = event.nativeEvent.layout;
         }
     }
 }

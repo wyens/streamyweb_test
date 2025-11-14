@@ -28,7 +28,7 @@ class MainListPage extends ViewItem {
                     <MainCategoriesView ref={categories.set} controller={categories} />
                 </div>
 
-                <div>
+                <div className={'h100'}>
                     <IptvListPageView ref={iptvPage.set} controller={iptvPage} />
                 </div>
             </div>
@@ -53,8 +53,7 @@ const styles: Record<string, React.CSSProperties> = {
 
     stickyCategories: {
         position: "sticky",
-        top: 0,
-        zIndex: 999,
+        zIndex: 1000,
         background: mainBG,
         display: "flex",
         alignItems: "center",

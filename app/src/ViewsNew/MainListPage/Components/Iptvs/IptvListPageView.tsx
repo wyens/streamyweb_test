@@ -5,6 +5,7 @@ import React from "react";
 import {ListView} from "~/src/Views/Components/ListView/ListView";
 import {IptvRowView} from "~/src/ViewsNew/MainListPage/Components/Iptvs/IptvRowView";
 import {IptvChannelNameView} from "~/src/ViewsNew/MainListPage/Components/Iptvs/IptvChannelNameView";
+import {COLORS} from "~/src/assets/styles/colors";
 
 
 class IptvListPageView extends ViewItem {
@@ -49,7 +50,8 @@ const styles: Record<string, React.CSSProperties> = {
         display: "flex",
         flexDirection: "column",
         minHeight: "100%",
-        paddingLeft: 10,
+        paddingLeft: 5,
+        height: "100%",
     },
     row: {
         display: "flex",

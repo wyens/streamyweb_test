@@ -1,6 +1,7 @@
 import React from "react";
 import { PressableFocusView } from "./PressableFocusView";
 import { FONTS } from "~/src/assets/styles/fonts";
+import {COLORS} from "~/src/assets/styles/colors";
 
 export const DISTANCE_BETWEEN_ITEMS = 3;
 
@@ -93,7 +94,9 @@ const styles: Record<string, React.CSSProperties> = {
     mainBackground: { backgroundColor: "#2D333D" },
     secondaryBackground: { backgroundColor: "#242830" },
     text: {
-        fontFamily: FONTS.semi,
+        fontFamily: 'Graphik',
+        fontWeight: 600,
+        color: COLORS.FONTCOLOR_WHITE,
         fontSize: 14,
     },
 };

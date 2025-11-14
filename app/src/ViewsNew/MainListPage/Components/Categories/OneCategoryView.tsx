@@ -77,20 +77,6 @@ class OneCategoryView extends ViewItem {
 
     render(){
         const { genre, focused, selected, onFocusItem, onBlurItem, setLayout, setTouchableRef } = this.controller
-        // return <View style={styles.container} onLayout={setLayout}>
-        //         <Pressable
-        //             ref={setTouchableRef}
-        //             onPress={() => {}}
-        //             focusable={true}
-        //             isTVSelectable={true}
-        //             onFocus={onFocusItem}
-        //             onBlur={this.onBlur}
-        //             hasTVPreferredFocus={this.state.focused}
-        //             style={[styles.oneCategory, focused && styles.oneCategoryFocused, selected && styles.oneCategoryFocused]}
-        //             >
-        //         <Text style="categoryItem" customStyle={[styles.textDefault, focused && styles.textSelected, , selected && styles.textSelected]}>{genre}</Text>
-        //     </Pressable>
-        // </View>
 
         const oneCategoryStyle = mergeStyles(
             styles.oneCategory,
