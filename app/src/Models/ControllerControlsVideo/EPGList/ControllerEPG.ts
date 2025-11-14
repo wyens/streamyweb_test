@@ -3,10 +3,11 @@ import {EpgModel} from "~/src/Controllers/Pages/HomeStack/IptvPage/EpgModel";
 
 export class ControllerEPG extends Model {
   public isVisible = false;
-  // public opacity = new Animated.Value(0);
   private _epgModel: EpgModel = new EpgModel();
-  constructor() {
+    private readonly _callback: () => void;
+  constructor(callback: () => void) {
     super();
+      this._callback = callback;
   }
 
   public get epgModel() {
@@ -17,27 +18,16 @@ export class ControllerEPG extends Model {
     this.updateMe().then(() => {
       callBack && callBack();
     });
-
-    // Animated.timing(this.opacity, {
-    //   toValue: 1,
-    //   duration: 200,
-    //   useNativeDriver: true,
-    // }).start(() => {});
-    // this._epgModel.loadAllEpgs();
   };
 
   public hide = (callBack?: (() => any) | undefined) => {
-      callBack && callBack();
-      this.isVisible = false;
-      this.updateMe();
-    // Animated.timing(this.opacity, {
-    //   toValue: 0,
-    //   duration: 200,
-    //   useNativeDriver: true,
-    // }).start(() => {
-    //   callBack && callBack();
-    //   this.isVisible = false;
-    //   this.updateMe();
-    // });
+      try {
+          callBack && callBack();
+          this._callback && this._callback();
+          this.isVisible = false;
+          this.updateMe();
+      }catch (e) {
+          console.log('error while hide', e);
+      }
   };
 }

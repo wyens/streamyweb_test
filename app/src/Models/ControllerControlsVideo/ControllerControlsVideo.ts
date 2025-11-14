@@ -39,7 +39,7 @@ class ControllerControlsVideo extends Model {
     this._controllerPlayPauseButton = new ControllerPlayPauseButton(this.playStop);
     this._TVInfoModel = new TVInfoModel();
     this._TVUpNextModel = new TVUpNextModel();
-    this._controllerEPG = new ControllerEPG();
+    this._controllerEPG = new ControllerEPG(this.hideEPGList);
     this._controllerChannelList = new ControllerChannelList(this);
   }
 
@@ -192,6 +192,9 @@ class ControllerControlsVideo extends Model {
 
   public showEPGList = () => {
     this._controllerEPG.show(this.updateMe);
+  }
+ public hideEPGList = () => {
+    this._controllerEPG.hide(this.updateMe);
   };
   public showChannelList = () => {
     this._controllerChannelList.show(this.updateMe);

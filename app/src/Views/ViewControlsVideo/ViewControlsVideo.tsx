@@ -7,10 +7,8 @@ import { VideoHeader } from "./VideoHeader";
 import { TVInfo } from "./TVInfo";
 import { TVUpNext } from "./TVUpNext";
 import { VideoChannels } from "./VideoChannels";
-// import { EPGList } from "./EPGList/EPGList";
-// import { ChannelList } from "./ChannelList/ChannelList";
 import { VideoFavorite } from "./VideoFavorite";
-import {ICONS} from "~/src/Constants/icons";
+import {EPGList} from "~/src/Views/ViewControlsVideo/EPGList/EPGList";
 
 
 
@@ -49,51 +47,14 @@ import {ICONS} from "~/src/Constants/icons";
                         <VideoFavorite controller={this.controller.TVFavoriteModel} ref={this.controller.TVFavoriteModel.set} />
                     </div>
                 </div>
-
-                {/* Play / Pause */}
-                <div style={styles.iconContainer}>
-                    <PlayPauseButton
-                        controller={this.controller.controllerPlayPauseButton}
-                        ref={this.controller.controllerPlayPauseButton.set}
-                    />
-                </div>
-            </div>
-        )
-
-        return (
-            <div
-                style={{
-                    ...styles.layer,
-                    pointerEvents: isVisible ? "auto" : "none",
-                    opacity: isVisible ? 1 : 0,
-                }}
-            >
-                <div
-                    style={{
-                        ...styles.dimBackground,
-                        opacity: anyOverlayOpen ? 0.25 : 0,
-                    }}
-                />
-
-                {/*<img src={ICONS.gradientTop} style={styles.topGradient} />*/}
-                {/*<img src={ICONS.gradientBottom} style={styles.bottomGradient} />*/}
-
-                {/* header */}
-                <div style={styles.tvHeaderContainer}>
-                    <div style={styles.wrapHeader}>
-                        <VideoHeader controller={this.controller.TVHeaderModel} />
-                        <VideoFavorite controller={this.controller.TVFavoriteModel} />
-                    </div>
-                </div>
-
                 {/* TV info */}
                 <div style={styles.tvInfoContainer}>
-                    <TVInfo controller={this.controller.TVInfoModel} />
+                    <TVInfo controller={this.controller.TVInfoModel} ref={this.controller.TVInfoModel.set} />
                 </div>
 
                 {/* TV Up Next */}
                 <div style={styles.tvUpNextContainer}>
-                    <TVUpNext controller={this.controller.TVUpNextModel} />
+                    <TVUpNext controller={this.controller.TVUpNextModel} ref={this.controller.TVUpNextModel.set} />
                 </div>
 
                 {/* Video Channels */}
@@ -109,10 +70,10 @@ import {ICONS} from "~/src/Constants/icons";
                 <div style={styles.iconContainer}>
                     <PlayPauseButton
                         controller={this.controller.controllerPlayPauseButton}
+                        ref={this.controller.controllerPlayPauseButton.set}
                     />
                 </div>
 
-                {/* EPG – просто показуємо/ховаємо по isVisible, pointerEvents як у RN */}
                 <div
                     style={{
                         ...styles.overlay,
@@ -120,21 +81,20 @@ import {ICONS} from "~/src/Constants/icons";
                         opacity: disableEPG ? 0 : 1,
                     }}
                 >
-                   {/* <EPGList controller={this.controller.controllerEPG} />*/}
+                    <EPGList controller={this.controller.controllerEPG} ref={this.controller.controllerEPG.set} />
                 </div>
 
-                {/* ChannelList */}
-                <div
-                    style={{
-                        ...styles.overlay,
-                        pointerEvents: disableChannel ? "none" : "auto",
-                        opacity: disableChannel ? 0 : 1,
-                    }}
-                >
-                    {/*<ChannelList controller={this.controller.controllerChannelList} />*/}
-                </div>
+                {/*<div*/}
+                {/*    style={{*/}
+                {/*        ...styles.overlay,*/}
+                {/*        pointerEvents: disableChannel ? "none" : "auto",*/}
+                {/*        opacity: disableChannel ? 0 : 1,*/}
+                {/*    }}*/}
+                {/*>*/}
+                {/*    <ChannelList controller={this.controller.controllerChannelList} ref={this.controller.controllerChannelList.set} />*/}
+                {/*</div>*/}
             </div>
-        );
+        )
     }
 }
 
