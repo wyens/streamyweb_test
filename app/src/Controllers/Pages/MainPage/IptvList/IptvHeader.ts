@@ -1,8 +1,10 @@
 import { Model } from "~/src/Base/Model";
+import React from "react";
 
 class IptvHeader extends Model {
     private _scrollRef: any;
     private _timeSlots: any;
+    private _setOnScroll: any;
 
     setScrollRef = (ref: any) => {
         this._scrollRef = ref?.current || ref || null;
@@ -32,6 +34,14 @@ class IptvHeader extends Model {
     get timeSlots() {
         return this._timeSlots;
     }
+
+    setOnScroll = (method) => {
+        this._setOnScroll = method;
+    };
+
+    public onHeaderScroll = (e: React.UIEvent<HTMLDivElement>) => {
+        this._setOnScroll && this._setOnScroll(e)
+    };
 }
 
 export { IptvHeader };

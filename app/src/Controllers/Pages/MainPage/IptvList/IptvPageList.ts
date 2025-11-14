@@ -6,6 +6,7 @@ import  {Slots} from "~/src/Controllers/Pages/HomeStack/IptvPage/Slots";
 import {LISTSIZE, PRELOAD_ITEMS_FROM_COUNT} from "~/src/Constants/settings";
 import {IptvChannel} from "~/src/Controllers/Pages/HomeStack/IptvPage/IptvChannel";
 import {DISTANCE_BETWEEN_ITEMS} from "~/src/ViewsNew/MainListPage/Components/Iptvs/IptvHeaderRow";
+import React from "react";
 
 
 type iptvPageListModel = {
@@ -35,6 +36,7 @@ class IptvPageList extends Model {
     this._iptvList.setOnLoadedThumbnail(this.onLoadedThumbnail)
     this._iptvHeader = new IptvHeader();
     this._iptvHeader.setTimeSlots(this._headerSlots.items)
+    this._iptvHeader.setOnScroll(this.onHeaderScroll)
   }
 
   setEpgCountToLoad = () => {
@@ -174,6 +176,11 @@ class IptvPageList extends Model {
     // this._bPlayer.loadLiveChannel(channel.channelHash);
     // this._epgModel.updateMe();
   };
+
+    public onHeaderScroll = (e: React.UIEvent<HTMLDivElement>) => {
+        const el = e.currentTarget as HTMLDivElement;
+        this._iptvList.scroll.syncScrollFromHeader(el.scrollLeft)
+    };
 }
 
 export { IptvPageList };

@@ -14,7 +14,7 @@ type listScrollProps = viewItemProps & {
 class ListCustomChannelsView extends ViewItem {
     props;
     _outerRef = null;
-    _innerRef = null;
+
 
     constructor(props:listScrollProps) {
         super(props);
@@ -44,13 +44,13 @@ class ListCustomChannelsView extends ViewItem {
     };
 
     setInnerRef = (ref) => {
-        this._innerRef = ref;
+        this.controller.setInnerRef(ref)
     };
 
     handleInnerWheel = (e) => {
-        if (!this._innerRef) return;
+        if (!this.controller.innerRef) return;
         if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
-            this._innerRef.scrollLeft += e.deltaY;
+            this.controller.innerRef.scrollLeft += e.deltaY;
         }
     };
 
@@ -74,9 +74,10 @@ class ListCustomChannelsView extends ViewItem {
                     <div
                         ref={this.setInnerRef}
                         onScroll={onScrollHorizontal}
-                        onWheel={this.handleInnerWheel}
+                        // onWheel={this.handleInnerWheel}
+                        style={styles.innerHorizontal}
                     >
-                        <div style={{ ...isFull }}>{this.props.children}</div>
+                        <div className={'w100'}>{this.props.children}</div>
                     </div>
                 </div>
             </div>
@@ -108,8 +109,7 @@ const styles: Record<string, React.CSSProperties> = {
         flexDirection: "row",
         overflowX: "auto",
         overflowY: "hidden",
-        flex: "1 1 auto",
-        minHeight: 0,
-        minWidth: 0,
+        maxWidth: "100%",
+        whiteSpace: "nowrap",
     },
 };

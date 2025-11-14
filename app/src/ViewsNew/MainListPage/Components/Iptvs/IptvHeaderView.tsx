@@ -10,7 +10,7 @@ class IptvHeaderView extends ViewItem {
     }
 
     render() {
-        const { setScrollRef, timeSlots } = this.controller;
+        const { setScrollRef, timeSlots , onHeaderScroll} = this.controller;
         const ready = Array.isArray(timeSlots) && timeSlots.length > 0;
         if (!ready) return null;
 
@@ -20,6 +20,7 @@ class IptvHeaderView extends ViewItem {
                 <div
                     ref={setScrollRef}
                     className={'scroll-x scroll-while'}
+                    onScroll={onHeaderScroll}
                     onWheel={(e) => {
                         if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
                             (e.currentTarget as HTMLDivElement).scrollLeft += e.deltaY;

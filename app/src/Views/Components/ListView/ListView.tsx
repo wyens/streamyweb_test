@@ -185,6 +185,7 @@ const styles: Record<string, React.CSSProperties> = {
         display: "flex",
         flex: "1 1 auto",
         minHeight: 0,
+        overflow: 'auto'
     },
     loadingBox: {
         display: "flex",
