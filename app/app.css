@@ -8,12 +8,15 @@
 html,
 body {
     background-color: #17181E;
-
   @media (prefers-color-scheme: dark) {
     color-scheme: dark;
   }
     max-width: 1440px;
     margin: 0 auto;
+}
+.flex1 {
+    display: flex;
+    flex: 1;
 }
 .h100 {
     height: 100%;

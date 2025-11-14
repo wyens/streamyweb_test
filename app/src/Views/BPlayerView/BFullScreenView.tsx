@@ -19,16 +19,16 @@ class BFullScreenView extends ViewItem {
 
         if (enabled) {
             return (
-                <div style={{ ...styles.mainContainer, ...styles.enabledFullScreen }}>
+                <div className={'flex1'}>
                     {children}
                 </div>
             );
         }
 
         return (
-            <div style={{ ...styles.container, ...enabledFullScreen }}>
-                <div style={{ ...styles.containerBox, ...enabledFullScreenBox }}>
-                    <div style={styles.insideContainer}>{children}</div>
+            <div className={'flex1'}>
+                <div  className={'flex1'}>
+                    <div  className={'flex1'}>{children}</div>
                 </div>
             </div>
         );
@@ -39,16 +39,14 @@ export { BFullScreenView };
 
 const styles = {
     mainContainer: {
-        width: "100%",
-        height: "100%",
+
     },
     container: {
-        width: "100%",
-        height: "100%",
     },
     containerBox: {
         width: "100%",
-        overflow: "hidden",
+        height: "100%",
+        backgroundColor: "white",
     },
     enabledFullScreen: {
         position: "fixed",
@@ -67,7 +65,5 @@ const styles = {
     enabledFullScreenBox: {
     },
     insideContainer: {
-        width: "100%",
-        height: "100%",
     },
 };

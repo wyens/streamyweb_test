@@ -11,10 +11,13 @@ export const ICONS = {
     google: "/img/buttons/googleauth.png",
     starDefault: "/img/design/starDefault.png",
     starActive: "/img/design/starActive.png",
+    gradientTop: "/img/gradient/top.png",
+    gradientBottom: "/img/gradient/bottom.png",
 };
 
 export const BASE_ICONS = {
     back: "/img/base/backbtn.png",
+    backWhite: "/img/base/backbtnwhite.png",
     right: "/img/buttons/arrowRight.png",
     burger: "/img/design/burger.png",
     tp: "/img/design/tp.png",
@@ -25,6 +28,7 @@ export const BASE_ICONS = {
 export const PLAYERICONS = {
     play: "/img/player/play.png",
     pause: "/img/player/pause.png",
+    pauseWhite: "/img/player/pauseWhite.png",
     playMini: "/img/player/playMini.png",
     fullscreen: "/img/player/fullscreen.png",
 };

@@ -1,95 +1,103 @@
-import React from 'react';
-import { Image, StyleSheet, View } from 'react-native';
-import { ViewItem } from '../../Base/ViewItem.tsx';
-import { TVInfoModel } from '../../Models/ControllerControlsVideo/TVInfoModel.ts';
-import { COLORS } from '../../assets/styles/colors.ts';
-import { FONTS } from '../../assets/styles/fonts.ts';
-import { Text } from '../Components/TextItem.tsx';
-import { LiveBadge } from './LiveBadge.tsx';
+import React from "react";
+import { ViewItem } from "~/src/Base/ViewItem";
+import { TVInfoModel } from "~/src/Models/ControllerControlsVideo/TVInfoModel";
+import { COLORS } from "~/src/assets/styles/colors";
+import { FONTS } from "~/src/assets/styles/fonts";
+import { TextItem } from "~/src/Views/Components/TextItem";
+import { LiveBadge } from "./LiveBadge";
 
 export class TVInfo extends ViewItem {
-  get controller(): TVInfoModel {
-    return this.props.controller;
-  }
+    get controller(): TVInfoModel {
+        return this.props.controller;
+    }
 
-  render() {
-    const { title, timeText, metaText, logoSource, live } = this.controller;
+    render() {
+        const { title, timeText, metaText, logoSource, live } = this.controller;
 
-    return (
-      <View style={[styles.card]}>
-        {/* top row: logo + time */}
-        <View style={styles.topRow}>
-          {logoSource && <Image source={{ uri: logoSource }} style={styles.logo} />}
-          {!!timeText && <Text stylesText={styles.timeText}>{timeText}</Text>}
-        </View>
+        return (
+            <div style={styles.card}>
+                {/* top row: logo + time */}
+                <div style={styles.topRow}>
+                    {logoSource && (
+                        <img src={logoSource} style={styles.logo} alt="channel logo" />
+                    )}
+                    {!!timeText && (
+                        <TextItem stylesText={styles.timeText}>{timeText}</TextItem>
+                    )}
+                </div>
 
-        {/* title */}
-        {!!title && <Text stylesText={styles.title}>{title}</Text>}
+                {/* title */}
+                {!!title && <TextItem stylesText={styles.title}>{title}</TextItem>}
 
-        {/* bottom row: meta left + LIVE badge right */}
-        <View style={styles.bottomRow}>
-          {!!metaText && <Text stylesText={styles.meta}>{metaText}</Text>}
+                {/* bottom row: meta left + LIVE badge right */}
+                <div style={styles.bottomRow}>
+                    {!!metaText && <TextItem stylesText={styles.meta}>{metaText}</TextItem>}
 
-          {live && <LiveBadge />}
-        </View>
-      </View>
-    );
-  }
+                    {live && (
+                        <div style={styles.liveBadge}>
+                            <LiveBadge />
+                        </div>
+                    )}
+                </div>
+            </div>
+        );
+    }
 }
 
-const styles = StyleSheet.create({
-  card: {
-    paddingHorizontal: 15,
-    paddingVertical: 10,
-    width: '100%',
-    maxWidth: 900,
-    borderRadius: 12,
-    borderWidth: 2,
-    borderColor: 'transparent',
-    // backgroundColor: 'rgba(0,0,0,0.12)',
-  },
+const styles: Record<string, React.CSSProperties> = {
+    card: {
+        paddingInline: 15,
+        paddingBlock: 10,
+        width: "100%",
+        maxWidth: 900,
+        borderRadius: 12,
+        borderWidth: 2,
+        borderStyle: "solid",
+        borderColor: "transparent",
+        boxSizing: "border-box",
+    },
 
-  topRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 10,
-  },
-  logoLive: {
-    width: 51,
-    height: 21,
-    resizeMode: 'contain',
-  },
-  logo: {
-    width: 50,
-    height: 50,
-    resizeMode: 'contain',
-    marginRight: 15,
-    // tintColor: '#D9D9D9',
-  },
-  timeText: {
-    color: COLORS.FONTCOLOR_WHITE,
-    fontSize: 16,
-    fontFamily: FONTS.bold,
-  },
+    topRow: {
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+        marginBottom: 10,
+    },
 
-  title: {
-    color: COLORS.FONTCOLOR_WHITE,
-    fontSize: 18,
-    fontFamily: FONTS.bold,
-  },
+    logo: {
+        width: 50,
+        height: 50,
+        objectFit: "contain",
+        marginRight: 15,
+    },
 
-  bottomRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginTop: 10,
-  },
-  meta: {
-    color: COLORS.FONTCOLOR_GRAY,
-    fontSize: 16,
-    fontFamily: FONTS.regular,
-  },
+    timeText: {
+        color: COLORS.FONTCOLOR_WHITE,
+        fontSize: 16,
+        fontFamily: FONTS.bold,
+    },
 
-  liveBadge: {
-    paddingLeft: 15,
-  },
-});
+    title: {
+        color: COLORS.FONTCOLOR_WHITE,
+        fontSize: 18,
+        fontFamily: FONTS.bold,
+    },
+
+    bottomRow: {
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+        marginTop: 10,
+        gap: 10,
+    },
+
+    meta: {
+        color: COLORS.FONTCOLOR_GRAY,
+        fontSize: 16,
+        fontFamily: FONTS.regular,
+    },
+
+    liveBadge: {
+        paddingLeft: 15,
+    },
+};
