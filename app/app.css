@@ -1,10 +1,20 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif,
+  --font-sans: "Graphik", ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
+:root {
+    /*// colors //*/
+    --FONTCOLOR_WHITE: '#fff';
+    --FONTCOLOR_GRAY: '#AAAAAA';
 
+    /*// fonts //*/
+
+    --font-bold: "Graphik-Bold";
+    --font-regular: 'Graphik-Regular';
+    --font-black: 'Graphik-Black';
+}
 html,
 body {
     background-color: #17181E;
@@ -49,8 +59,356 @@ body {
 .scroll-x::-webkit-scrollbar {
     width: 0; height: 0;
 }
+
 @keyframes spin {
     to {
         transform: rotate(360deg);
     }
+}
+
+/*// ViewControlsVideo // */
+
+.view-controls-video {
+    position: absolute;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.25s ease;
+    background-color: red;
+    width: 100%;
+    height: 100%;
+    pointer-events: auto;
+}
+
+.view-controls-video--hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.vcv-dim-background {
+    position: absolute;
+    inset: 0;
+    background-color: #000;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+}
+
+.vcv-top-gradient {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 84px;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.vcv-bottom-gradient {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 221px;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.vcv-icon-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -50px;
+    margin-top: -50px;
+    z-index: 3;
+}
+
+.vcv-tv-info-container {
+    position: absolute;
+    bottom: 40px;
+    left: 10px;
+    z-index: 3;
+}
+
+.vcv-tv-upnext-container {
+    position: absolute;
+    bottom: 40px;
+    right: 10px;
+    z-index: 3;
+}
+
+.vcv-tv-header-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 64px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-inline: 5px;
+    z-index: 2;
+}
+
+.vcv-wrap-header {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.vcv-tv-channels-container {
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-77.5px);
+    z-index: 3;
+}
+
+.vcv-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    justify-content: flex-end;
+    transition: opacity 0.2s ease;
+    pointer-events: auto;
+    opacity: 1;
+}
+
+.vcv-overlay--disabled {
+    pointer-events: none;
+    opacity: 0;
+}
+
+/*// VideoHeader //*/
+
+.vh-wrap {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    padding-left: 0;
+    padding-right: 15px;
+
+    border-width: 2px;
+    border-style: solid;
+    border-color: transparent;
+
+    border-radius: 5px;
+    background: transparent;
+    cursor: pointer;
+    outline: none;
+}
+
+.vh-wrap--focused {
+    border-color: #ffffff;
+}
+
+.vh-icon-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.vh-icon {
+    width: 26px;
+    height: 26px;
+    object-fit: contain;
+}
+
+.vh-title {
+    margin-left: 8px;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/*// VideoFavorite //*/
+
+.vf-wrap {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    padding-left: 15px;
+    padding-right: 15px;
+
+    border-radius: 5px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: transparent;
+
+    background: transparent;
+    cursor: pointer;
+    outline: none;
+}
+
+.vf-wrap--focused {
+    border-color: #ffffff;
+}
+
+.vf-icon-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.vf-icon {
+    width: 32px;
+    height: 32px;
+    transition: filter 0.2s ease;
+}
+
+.vf-icon--active {
+    filter: none;
+}
+
+/*// TVInfo //*/
+
+.tvinfo-card {
+    padding-inline: 15px;
+    padding-block: 10px;
+    width: 100%;
+    max-width: 900px;
+    border-radius: 12px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: transparent;
+    box-sizing: border-box;
+}
+
+.tvinfo-top-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.tvinfo-logo {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    margin-right: 15px;
+}
+
+.tvinfo-time-text {
+    color: var(--FONTCOLOR_WHITE);
+    font-size: 16px;
+    font-family: var(--font-bold), serif;
+}
+
+.tvinfo-title {
+    color: var(--FONTCOLOR_WHITE);
+    font-size: 18px;
+    font-family: var(--font-bold), serif;
+}
+
+.tvinfo-bottom-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 10px;
+    gap: 10px;
+}
+
+.tvinfo-meta {
+    color: var(--FONTCOLOR_GRAY);
+    font-size: 16px;
+    font-family: var(--font-regular), serif;
+}
+
+.tvinfo-live-badge {
+    padding-left: 15px;
+}
+
+/*// NotInitedComponent //*/
+
+.notinit-container {
+    display: flex;
+    flex: 1 1 auto;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 80px;
+}
+
+.notinit-text {
+    font-size: 18px;
+    font-family: var(--font-black), serif;
+}
+
+/*// TVUpNext //*/
+
+.tvup-card {
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    width: 100%;
+    max-width: 900px;
+    min-width: 266px;
+
+    border-radius: 12px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: transparent;
+
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    cursor: pointer;
+    outline: none;
+
+    transition: border-color 130ms ease, background-color 130ms ease;
+}
+
+.tvup-card--focused {
+    border-color: var(--FONTCOLOR_WHITE);
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.tvup-left {
+    flex: 1;
+}
+
+.tvup-top-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.tvup-upnext {
+    color: var(--FONTCOLOR_GRAY);
+    font-size: 16px;
+    font-family: var(--font-bold), serif;
+}
+
+.tvup-title {
+    color: var(--color-white);
+    font-size: 18px;
+    font-family: var(--font-bold), serif;
+}
+
+.tvup-bottom-row {
+    margin-top: 10px;
+}
+
+.tvup-meta {
+    color: var(--FONTCOLOR_GRAY);
+    font-size: 16px;
+    font-family: var(--font-regular), serif;
+}
+
+.tvup-arrow {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    margin-left: 10px;
 }

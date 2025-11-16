@@ -45,6 +45,7 @@ class IptvPageModel extends Model {
         console.log('channel', channel)
         this._bPlayer.loadLiveChannel(channel.channelHash)
         this._epgModel.updateMe()
+
     }
 
     get epg(){

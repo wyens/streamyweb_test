@@ -11,10 +11,10 @@ class BPlayerView extends ViewItem {
   render() {
     const { video, state, videoControls, bFullScreen, debug } = this.controller;
     return (
-      <div style={styles.container} className={'flex1'}>
+      <div className={'flex1'}>
         {/* <BVidDebugView ref={debug.set} controller={debug}/> */}
         <BFullScreenView ref={bFullScreen.set} controller={bFullScreen}>
-          <div style={styles.box}>
+          <div className={'flex1'}>
             {/*<BStateView ref={state.set} controller={state} />*/}
             <ViewControlsVideo controller={videoControls} ref={videoControls.set} />
             {/*<BVideoView ref={video.set} controller={video} />*/}
@@ -27,13 +27,3 @@ class BPlayerView extends ViewItem {
 
 export { BPlayerView };
 
-const styles = ({
-  container: {
-    flex: 1,
-      display: 'flex',
-  },
-  box: {
-      flex: 1,
-      display: 'flex',
-  },
-});

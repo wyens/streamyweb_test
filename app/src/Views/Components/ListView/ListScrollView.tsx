@@ -68,6 +68,7 @@ class ListScrollView extends ViewItem {
         return (
             <div
                 style={styles.scroll}
+                className={'scroll-x'}
                 ref={this.setSaveScrollRef}
                 tabIndex={this.props.focusable ? 0 : -1}
                 data-autofocus={this.props.autoFocus ? "true" : "false"}
@@ -98,8 +99,6 @@ export const styles: Record<string, React.CSSProperties> = {
     innerHorizontal: {
         display: "flex",
         flexDirection: "row",
-        overflowX: "auto",
-        overflowY: "hidden",
         flex: "1 1 auto",
         minWidth: 0,
         minHeight: 0,

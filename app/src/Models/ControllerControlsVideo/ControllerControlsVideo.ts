@@ -39,7 +39,7 @@ class ControllerControlsVideo extends Model {
     this._controllerPlayPauseButton = new ControllerPlayPauseButton(this.playStop);
     this._TVInfoModel = new TVInfoModel();
     this._TVUpNextModel = new TVUpNextModel();
-    this._controllerEPG = new ControllerEPG(this.hideEPGList);
+    this._controllerEPG = new ControllerEPG(this);
     this._controllerChannelList = new ControllerChannelList(this);
   }
 
@@ -130,9 +130,9 @@ class ControllerControlsVideo extends Model {
   };
 
   public hideControllers = (immediate: boolean = false): Promise<void> => {
-    if (!this._isVisible) {
-      return Promise.resolve();
-    }
+    // if (!this._isVisible) {
+    //   return Promise.resolve();
+    // }
     this.removeAllFocus();
     if (immediate) {
       // this._opacity.stopAnimation();
@@ -198,6 +198,9 @@ class ControllerControlsVideo extends Model {
   };
   public showChannelList = () => {
     this._controllerChannelList.show(this.updateMe);
+  };
+  public hideChannelList = () => {
+    this._controllerChannelList.hide(this.updateMe);
   };
 }
 

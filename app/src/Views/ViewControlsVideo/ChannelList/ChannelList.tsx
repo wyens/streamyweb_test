@@ -1,57 +1,72 @@
 import React from 'react';
-import { Animated, Button, StyleSheet, TVFocusGuideView, View } from 'react-native';
-import { ViewItem } from '../../../Base/ViewItem.tsx';
-import { ControllerChannelList } from '../../../Models/ControllerControlsVideo/ChannelList/ControllerChannelList.ts';
-import { ListView } from '../../Components/ListView/ListView.tsx';
-import { NewIptvRowView } from '../../../ViewsNew/MainListPage/Components/Iptvs/NewIptvRowView.tsx';
-import { ChannelFilters } from './ChannelFilters.tsx';
-import { controllers } from '../../../Controllers/Controllers.ts';
-import { RemoteEventType } from '../../../Base/RemoteControls.ts';
+import { ViewItem } from '~/src/Base/ViewItem';
+import { ControllerChannelList } from '~/src/Models/ControllerControlsVideo/ChannelList/ControllerChannelList';
+import { controllers } from '~/src/Controllers/Controllers';
+import {ChannelFilters} from "~/src/Views/ViewControlsVideo/ChannelList/ChannelFilters";
+import {NewIptvRowView} from "~/src/ViewsNew/MainListPage/Components/Iptvs/NewIptvRowView";
+import {ListView} from "~/src/Views/Components/ListView/ListView";
+
 
 export class ChannelList extends ViewItem {
-  get controller(): ControllerChannelList {
-    return this.props.controller;
-  }
-
-  render() {
-    const isVisible = this.controller.isVisible;
-    const pointerEvents = isVisible ? 'auto' : 'none';
-    // const destinations = this.controller.iptvList.localitems[0] ? [this.controller.iptvList.localitems[0].focusRefItem] : undefined
-    // console.error("destinations", destinations)
-    if(!isVisible){
-      return null
+    get controller(): ControllerChannelList {
+        return this.props.controller;
     }
-    return (
-      <Animated.View
-        ref={this.controller.set}
-        // pointerEvents={pointerEvents}
-        style={[StyleSheet.absoluteFill, styles.overlay, { opacity: this.controller.opacity }]}
-      >
-        {/* <Button title='reset' onPress={()=>controllers().main.videoPlayerPage.RemoteEvent(RemoteEventType.Back)}/> */}
-        <TVFocusGuideView isTVSelectable={true} style={styles.panel}>
-          <ChannelFilters ref={this.controller.setCategoryFocusRef} selectedCategory={this.controller.selectedCategory}  onSelectCategory={this.controller.onCategoryChanged} selectedChannel={controllers().main.videoPlayerPage.initialChannel?.title || ""} categories={controllers().main.mainListPage.categories.items}/>
-          <ListView isFull={true} autoFocus={true} ref={this.controller.iptvList.set} controller={this.controller.iptvList} RightComponent={NewIptvRowView} />
-        </TVFocusGuideView>
-      </Animated.View>
-    );
-  }
+
+    onOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
+        if (e.target === e.currentTarget) {
+            this.controller.controls.hideChannelList?.();
+        }
+    };
+
+    render() {
+        const isVisible = this.controller.isVisible;
+
+        if (!isVisible) {
+            return null;
+        }
+
+        return (
+            <div style={styles.overlay}  onClick={this.onOverlayClick}>
+                <div style={styles.panel}>
+                    <ChannelFilters
+                        ref={this.controller.setCategoryFocusRef}
+                        selectedCategory={this.controller.selectedCategory}
+                        onSelectCategory={this.controller.onCategoryChanged}
+                        selectedChannel={controllers().main.videoPlayerPage.initialChannel?.title || ''}
+                        categories={controllers().main.mainListPage.categories.items}
+                    />
+                    <ListView
+                        isFull={true}
+                        autoFocus={true}
+                        ref={this.controller.iptvList.set}
+                        controller={this.controller.iptvList}
+                        RightComponent={NewIptvRowView}
+                    />
+                </div>
+            </div>
+        );
+    }
 }
 
-const styles = StyleSheet.create({
-  overlay: {
-    zIndex: 9999,
-    elevation: 9999,
-    justifyContent: 'flex-end',
-  },
-  panel: {
-    width: '100%',
-    height: '66%',
-    backgroundColor: 'rgba(0, 0, 0, 0.8)',
-    borderTopLeftRadius: 16,
-    borderTopRightRadius: 16,
-    paddingHorizontal: 20,
-    paddingTop: 10,
-    paddingBottom: 5,
 
-  },
-});
+
+const styles: Record<string, React.CSSProperties> = {
+    overlay: {
+        position: 'fixed',
+        inset: 0,
+        zIndex: 9999,
+        display: 'flex',
+        alignItems: 'flex-end'
+    },
+    panel: {
+        width: '100%',
+        height: '66vh',
+        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+        borderTopLeftRadius: 16,
+        borderTopRightRadius: 16,
+        padding: '10px 20px 5px 20px',
+        boxSizing: 'border-box',
+        display: 'flex',
+        flexDirection: 'column',
+    },
+};

@@ -14,8 +14,8 @@ class BFullScreenView extends ViewItem {
 
         const saLayout = (controllers()?.media?.asLayoutFullScreen) || {};
 
-        const enabledFullScreen = enabled ? styles.enabledFullScreen : {};
-        const enabledFullScreenBox = enabled ? { ...styles.enabledFullScreenBox, ...saLayout } : {};
+        // const enabledFullScreen = enabled ? styles.enabledFullScreen : {};
+        // const enabledFullScreenBox = enabled ? { ...styles.enabledFullScreenBox, ...saLayout } : {};
 
         if (enabled) {
             return (
@@ -37,33 +37,3 @@ class BFullScreenView extends ViewItem {
 
 export { BFullScreenView };
 
-const styles = {
-    mainContainer: {
-
-    },
-    container: {
-    },
-    containerBox: {
-        width: "100%",
-        height: "100%",
-        backgroundColor: "white",
-    },
-    enabledFullScreen: {
-        position: "fixed",
-        left: 0,
-        right: 0,
-        top: 0,
-        bottom: 0,
-        width: "100vw",
-        height: "100vh",
-        zIndex: 9999999,
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-       backgroundColor: "red",
-    },
-    enabledFullScreenBox: {
-    },
-    insideContainer: {
-    },
-};

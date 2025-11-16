@@ -36,6 +36,7 @@ type textItemProps = {
   center?: boolean;
   color?: string;
   customStyle?: any;
+  className?: any;
   ellipsizeMode?: 'head' | 'middle' | 'tail' | 'clip';
   numberOfLines?: number;
 };
@@ -47,7 +48,7 @@ class TextItem extends React.Component {
     this.props = props;
   }
   render() {
-    const { style, center, color, customStyle, ellipsizeMode, numberOfLines } = this.props;
+    const { style, center, color, customStyle, ellipsizeMode, numberOfLines, className } = this.props;
       const base = styles.container;
       const stylesText = this.props.stylesText || {};
       const named = style ? (styles as any)[style] || {} : {};
@@ -64,9 +65,8 @@ class TextItem extends React.Component {
           ...customStyle,
           ...stylesText,
       };
-
       return (
-        <span style={merged} >
+        <span style={merged} className={className}>
          <LangItem for={this.props.children} />
       </span>
     );

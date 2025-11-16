@@ -3,6 +3,7 @@ import type { TVFavoriteModel } from "~/src/Models/ControllerControlsVideo/TVFav
 import { ViewItem } from "~/src/Base/ViewItem";
 import { ICONS } from "~/src/Constants/icons";
 
+
 export class VideoFavorite extends ViewItem {
     get controller(): TVFavoriteModel {
         return this.props.controller;
@@ -14,23 +15,19 @@ export class VideoFavorite extends ViewItem {
         return (
             <button
                 type="button"
+                className={"vf-wrap" + (focused ? " vf-wrap--focused" : "")}
                 onClick={toggleFavorite}
                 onFocus={() => setFocused(true)}
                 onBlur={() => setFocused(false)}
                 onMouseEnter={() => setFocused(true)}
                 onMouseLeave={() => setFocused(false)}
-                style={{
-                    ...styles.wrap,
-                    ...(focused ? styles.backButtonFocused : {}),
-                }}
             >
-                <div style={styles.backButton}>
+                <div className="vf-icon-box">
                     <img
                         src={isFavorite ? ICONS.starActive : ICONS.starDefault}
-                        style={{
-                            ...styles.icon,
-                            ...(isFavorite ? styles.activeIcon : {}),
-                        }}
+                        className={
+                            "vf-icon" + (isFavorite ? " vf-icon--active" : "")
+                        }
                         alt="favorite"
                     />
                 </div>
@@ -38,35 +35,3 @@ export class VideoFavorite extends ViewItem {
         );
     }
 }
-
-const styles: Record<string, React.CSSProperties> = {
-    wrap: {
-        display: "flex",
-        flexDirection: "row",
-        alignItems: "center",
-        paddingLeft: 15,
-        paddingRight: 15,
-        borderRadius: 5,
-        borderWidth: "2px",
-        borderStyle: "solid",
-        borderColor: "transparent",
-        background: "transparent",
-        cursor: "pointer",
-        outline: "none",
-    },
-    backButton: {
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-    },
-    backButtonFocused: {
-        borderColor: "#ffffff",
-    },
-    icon: {
-        width: 32,
-        height: 32,
-    },
-    activeIcon: {
-        filter: "none",
-    },
-};
