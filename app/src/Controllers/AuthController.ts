@@ -8,6 +8,7 @@ import { saveData } from '../Helpers/saveData';
 import { controllers } from './Controllers';
 import { stringParser } from '../Helpers/Helpers';
 import { DateParse, dayDifferenceFromNow } from '../Helpers/DateParse';
+import {appNavigator} from "~/src/Controllers/Navigation";
 
 export type signInResponseType = {
   status: boolean;
@@ -151,6 +152,7 @@ class AuthController {
       // controllers().firebaseController.deviceToken.init().then();
     });
     this.saveMe();
+    appNavigator().goToHomePage({});
   }
 
   afterAuth = () => {};

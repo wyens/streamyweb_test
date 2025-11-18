@@ -11,7 +11,6 @@ class LoginPage extends ViewItem {
   }
   componentDidMount(): void {
       this.controller.init();
-      console.log('componentDidMount')
   }
   componentWillUnmount(): void {
     this.controller.blur();

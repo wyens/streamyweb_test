@@ -29,9 +29,6 @@ class LoginMainModel extends Model {
       this._code = response.data.code;
       this.state = StateLogin.code;
     }
-      setTimeout(() => {
-          appNavigator().goToHomePage({});
-      }, 5000)
   };
 
   public blur = async () => {
@@ -59,9 +56,9 @@ class LoginMainModel extends Model {
     if (this._state === StateLogin.preloader) {
       return;
     }
-    // return;
     const body = {
       code: this._code,
+      // isDev: true
     };
     const response = await loadData(UserDataProvider.checkActivation, body);
     console.log('checkIfActiveDevice', response);
