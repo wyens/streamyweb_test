@@ -5,7 +5,7 @@ import { HeaderPageWithName } from "~/src/Views/Components/HeaderPage/HeaderPage
 import { MainCategoriesView } from "~/src/ViewsNew/MainListPage/Components/Categories/MainCategories";
 import { IptvListPageView } from "~/src/ViewsNew/MainListPage/Components/Iptvs/IptvListPageView";
 import { HEADER_HEIGHT } from "~/src/Views/Components/HeaderPage/HeaderPage";
-import {COLORS, mainBG} from "~/src/assets/styles/colors"; // якщо є число
+import {COLORS, mainBG} from "~/src/assets/styles/colors";
 
 class MainListPage extends ViewItem {
     private focusUnsub: any;

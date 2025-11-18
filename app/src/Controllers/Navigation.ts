@@ -122,6 +122,10 @@ class NavigatorImpl {
 
     afterNavigation = () => {};
 
+    public goToLogout = (_data?: any) => {
+        this.navigate("/", {});
+    };
+
     public goToHomePage = (_data?: any) => {
         this.navigate("/home", {id: '1'});
     };

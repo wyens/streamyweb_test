@@ -459,3 +459,110 @@ body {
     --media-object-fit: cover;
     --media-object-position: 50% 50%;
 }
+
+/*// logout //*/
+.logout-layer {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: auto;
+}
+
+.logout-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.25);
+}
+
+.logout-gradient-top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 84px;
+    z-index: 2;
+    object-fit: fill;
+}
+
+.logout-gradient-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 221px;
+    z-index: 2;
+    object-fit: fill;
+}
+
+.logout-content {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    max-width: 600px;
+    padding: 0 24px;
+}
+
+.logout-menu-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logout-menu-panel {
+    min-width: 460px;
+    padding: 18px 20px;
+    border-radius: 14px;
+    background-color: #1c1e2a;
+    border: 1px solid #2c2f42;
+}
+
+.logout-menu-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: 14px;
+}
+
+.logout-menu-row {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    margin-top: 20px;
+    justify-content: space-around;
+}
+
+.logout-menu-btn {
+    min-width: 120px;
+    height: 44px;
+    border-radius: 22px;
+    border: 1px solid #3a3e55;
+    background-color: #222532;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    transition: transform 0.12s ease-out, background-color 0.12s, border-color 0.12s;
+}
+
+.logout-menu-btn-focused,
+.logout-menu-btn:focus-visible {
+    border-color: #00c2ff;
+    background-color: #2a2e41;
+    transform: scale(1.06);
+    outline: none;
+}
+
+.logout-menu-btn-text {
+    color: #d6dae8;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.logout-menu-btn-text-focused {
+    color: #ffffff;
+}

@@ -166,6 +166,7 @@ class AuthController {
     // controllers().simplyAuth.google.signOut()
     console.log("logout", response)
     // clear storage update page
+    appNavigator().goToLogout({});
     this.logout();
   };
 

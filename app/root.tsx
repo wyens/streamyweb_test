@@ -13,6 +13,7 @@ import "./src/assets/fonts/fonts.css";
 import {AppStateController} from "~/src/Views/Core/AppStateController";
 import {controllers} from "~/src/Controllers/Controllers";
 import NavigationBinder from "~/Navigation/NavigationBinder";
+import {HelpersView} from "~/src/Views/Core/HelpersView";
 
 export const links: Route.LinksFunction = () => [
     { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -79,6 +80,7 @@ export default function App() {
     return (
     <>
         <NavigationBinder />
+        <HelpersView/>
         <Outlet />
     </>
     )
