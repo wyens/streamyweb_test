@@ -3,6 +3,7 @@ import { BPlayer } from '../../Models/BPlayer/BPlayer';
 import { BFullScreenView } from './BFullScreenView';
 import React from 'react';
 import {ViewControlsVideo} from "~/src/Views/ViewControlsVideo/ViewControlsVideo";
+import {BVideoView} from "~/src/Views/BPlayerView/BVideoView";
 
 class BPlayerView extends ViewItem {
   get controller(): BPlayer {
@@ -17,7 +18,7 @@ class BPlayerView extends ViewItem {
           <div className={'flex1'}>
             {/*<BStateView ref={state.set} controller={state} />*/}
             <ViewControlsVideo controller={videoControls} ref={videoControls.set} />
-            {/*<BVideoView ref={video.set} controller={video} />*/}
+            <BVideoView ref={video.set} controller={video} />
           </div>
         </BFullScreenView>
       </div>

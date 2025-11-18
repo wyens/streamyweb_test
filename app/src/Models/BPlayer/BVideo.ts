@@ -92,7 +92,10 @@ class BVideo extends Model {
     if (!this._screen) {
       return;
     }
-    this._screen.play();
+    if (!this._screen.current){
+        return;
+    }
+    this._screen.current.play();
   };
 
   get isFullScreen() {
@@ -103,9 +106,12 @@ class BVideo extends Model {
     if (!this._screen) {
       return;
     }
+    if (!this._screen.current){
+          return;
+    }
     // this._screen.pause()
     // console.error(this._screen.vlcPlayer)
-    this._screen.pause();
+    this._screen.current.pause();
   };
 }
 

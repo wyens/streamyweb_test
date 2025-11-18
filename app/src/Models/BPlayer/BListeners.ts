@@ -20,7 +20,8 @@ class BListeners {
   };
   onCanPlay = (e: any) => {
     this.bPlayer.debug.setItem("LOAD", "FULLY LOADED")
-    this.bPlayer.timeline.setDuration(Platform.OS === 'android' ? Math.round(e.duration) : Math.round(e.duration / 1000));
+      console.log('e', e)
+    this.bPlayer.timeline.setDuration(Math.round(e.duration / 1000));
     this.bPlayer.state.setLoading(false);
     this.bPlayer.state.setPlaying(true);
   };
